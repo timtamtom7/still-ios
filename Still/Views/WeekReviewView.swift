@@ -13,7 +13,7 @@ struct WeekReviewView: View {
                     if viewModel.isLoading {
                         loadingState
                     } else {
-                        reviewContent
+                        errorState
                     }
                 } else {
                     countdownState
@@ -37,6 +37,31 @@ struct WeekReviewView: View {
             Text("Gathering your week...")
                 .font(AppTypography.body)
                 .foregroundColor(AppColors.textSecondary)
+        }
+    }
+
+    @ViewBuilder
+    private var errorState: some View {
+        if let error = viewModel.loadError {
+            VStack(spacing: 16) {
+                Image(systemName: "exclamationmark.triangle")
+                    .font(.system(size: 40))
+                    .foregroundColor(AppColors.amber.opacity(0.7))
+
+                Text(error)
+                    .font(AppTypography.body)
+                    .foregroundColor(AppColors.textSecondary)
+                    .multilineTextAlignment(.center)
+
+                Button("Try Again") {
+                    viewModel.refresh()
+                }
+                .font(AppTypography.button)
+                .foregroundColor(AppColors.amber)
+            }
+            .padding(48)
+        } else {
+            reviewContent
         }
     }
 
@@ -80,6 +105,11 @@ struct WeekReviewView: View {
             Text("Your week will reveal itself Sunday night")
                 .font(AppTypography.body)
                 .foregroundColor(AppColors.textSecondary)
+                .multilineTextAlignment(.center)
+
+            Text("Keep reflecting — the threads will gather")
+                .font(AppTypography.caption)
+                .foregroundColor(AppColors.textSecondary.opacity(0.6))
                 .multilineTextAlignment(.center)
         }
         .padding(48)

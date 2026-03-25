@@ -18,9 +18,9 @@ struct WeekReviewCard: View {
             .padding(.horizontal, 4)
 
             if section.reflections.isEmpty {
-                Text("Nothing here yet")
-                    .font(AppTypography.body)
-                    .foregroundColor(AppColors.textSecondary)
+                Text("Nothing recorded in this category this week")
+                    .font(AppTypography.caption)
+                    .foregroundColor(AppColors.textSecondary.opacity(0.6))
                     .padding(.vertical, 8)
             } else {
                 VStack(spacing: 12) {

@@ -25,6 +25,10 @@ struct TypewriterText: View {
     }
 
     private func startTyping() {
+        guard !text.isEmpty else {
+            displayedText = ""
+            return
+        }
         let interval = 1.0 / speed
         var count = 0
 

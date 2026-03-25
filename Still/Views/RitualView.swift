@@ -3,7 +3,6 @@ import SwiftUI
 struct RitualView: View {
     @EnvironmentObject var viewModel: RitualViewModel
     @ObservedObject var soundManager = SoundManager.shared
-    @State private var animationPhase: CGFloat = 1.0
 
     private var orbState: OrbState {
         switch viewModel.state {
@@ -40,9 +39,19 @@ struct RitualView: View {
                 ratingOverlay
             }
         }
+        .alert("Couldn't Save", isPresented: $viewModel.showSaveError) {
+            Button("Try Again") {
+                viewModel.dismissSaveError()
+                viewModel.submitReflection()
+            }
+            Button("Dismiss", role: .cancel) {
+                viewModel.dismissSaveError()
+            }
+        } message: {
+            Text(viewModel.saveErrorMessage)
+        }
         .onAppear {
             if viewModel.state == .ready || viewModel.state == .waiting {
-                startBreathingAnimation()
                 viewModel.startBreathing()
             }
         }
@@ -51,38 +60,64 @@ struct RitualView: View {
     // MARK: - Top Bar
 
     private var topBar: some View {
-        HStack {
-            if viewModel.state == .reflecting {
-                AmbientSoundPicker()
-                    .transition(.opacity.combined(with: .move(edge: .top)))
-            }
-            Spacer()
-
-            // Memory lane button
-            if hasMemoryLane {
-                NavigationLink {
-                    MemoryLaneView(
-                        oneYearAgo: viewModel.oneYearAgoReflection,
-                        oneMonthAgo: viewModel.oneMonthAgoReflection,
-                        thisDayInHistory: viewModel.thisDayInHistoryReflections
-                    )
-                } label: {
-                    HStack(spacing: 6) {
-                        Image(systemName: "clock.arrow.circlepath")
-                            .font(.system(size: 14))
-                        Text("Memories")
-                            .font(AppTypography.caption)
+        VStack(spacing: 8) {
+            // Offline banner
+            if viewModel.showOfflineBanner {
+                HStack(spacing: 8) {
+                    Image(systemName: "wifi.slash")
+                        .font(.system(size: 12))
+                    Text("Offline — reflections saved locally")
+                        .font(AppTypography.caption)
+                    Spacer()
+                    Button {
+                        withAnimation { viewModel.showOfflineBanner = false }
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 10))
                     }
-                    .foregroundColor(AppColors.amber.opacity(0.8))
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .background(AppColors.surface)
-                    .cornerRadius(16)
+                }
+                .foregroundColor(AppColors.textSecondary)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+                .background(AppColors.surface)
+                .cornerRadius(8)
+                .padding(.horizontal, 32)
+                .transition(.opacity.combined(with: .move(edge: .top)))
+            }
+
+            HStack {
+                if viewModel.state == .reflecting {
+                    AmbientSoundPicker()
+                        .transition(.opacity.combined(with: .move(edge: .top)))
+                }
+                Spacer()
+
+                // Memory lane button
+                if hasMemoryLane {
+                    NavigationLink {
+                        MemoryLaneView(
+                            oneYearAgo: viewModel.oneYearAgoReflection,
+                            oneMonthAgo: viewModel.oneMonthAgoReflection,
+                            thisDayInHistory: viewModel.thisDayInHistoryReflections
+                        )
+                    } label: {
+                        HStack(spacing: 6) {
+                            Image(systemName: "clock.arrow.circlepath")
+                                .font(.system(size: 14))
+                            Text("Memories")
+                                .font(AppTypography.caption)
+                        }
+                        .foregroundColor(AppColors.amber.opacity(0.8))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .background(AppColors.surface)
+                        .cornerRadius(16)
+                    }
                 }
             }
+            .padding(.horizontal, 32)
+            .padding(.top, 16)
         }
-        .padding(.horizontal, 32)
-        .padding(.top, 16)
         .animation(.easeInOut(duration: 0.4), value: viewModel.state)
     }
 
@@ -97,12 +132,10 @@ struct RitualView: View {
     private var orbSection: some View {
         VStack(spacing: 48) {
             ZStack {
-                BreathingOrb(state: orbState, scale: $animationPhase)
+                BreathingOrb(state: orbState, scale: $viewModel.breathingScale)
                     .onTapGesture {
                         viewModel.tapOrb()
                     }
-                    .scaleEffect(viewModel.breathingScale)
-                    .animation(.easeInOut(duration: 4).repeatForever(autoreverses: true), value: viewModel.breathingScale)
             }
             .frame(width: 160, height: 160)
 
@@ -262,13 +295,6 @@ struct RitualView: View {
         .transition(.opacity)
     }
 
-    // MARK: - Animation
-
-    private func startBreathingAnimation() {
-        withAnimation(.easeInOut(duration: 4).repeatForever(autoreverses: true)) {
-            animationPhase = 1.08
-        }
-    }
 }
 
 // MARK: - Memory Lane View

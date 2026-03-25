@@ -21,7 +21,11 @@ final class CloudKitService {
     func checkAccountStatus(completion: @escaping (Bool) -> Void) {
         container.accountStatus { status, error in
             DispatchQueue.main.async {
-                completion(status == .available)
+                let available = status == .available
+                if !available {
+                    print("CloudKit account unavailable: \(status.rawValue)")
+                }
+                completion(available)
             }
         }
     }

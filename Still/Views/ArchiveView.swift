@@ -13,6 +13,8 @@ struct ArchiveView: View {
 
                 if viewModel.reflections.isEmpty && viewModel.searchQuery.isEmpty {
                     emptyState
+                } else if viewModel.reflections.isEmpty && !viewModel.searchQuery.isEmpty {
+                    searchNoResultsState
                 } else {
                     archiveList
                 }
@@ -44,17 +46,41 @@ struct ArchiveView: View {
     }
 
     private var emptyState: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 20) {
             Image(systemName: "moon.stars")
                 .font(.system(size: 48))
-                .foregroundColor(AppColors.textSecondary)
+                .foregroundColor(AppColors.textSecondary.opacity(0.6))
 
-            Text("Your reflections will live here")
+            VStack(spacing: 8) {
+                Text("Your reflections will live here")
+                    .font(AppTypography.body)
+                    .foregroundColor(AppColors.textSecondary)
+
+                Text("Still will hold your first reflection tonight")
+                    .font(AppTypography.caption)
+                    .foregroundColor(AppColors.textSecondary.opacity(0.6))
+                    .multilineTextAlignment(.center)
+            }
+        }
+        .padding(48)
+    }
+
+    private var searchNoResultsState: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "magnifyingglass")
+                .font(.system(size: 40))
+                .foregroundColor(AppColors.textSecondary.opacity(0.5))
+
+            Text("No reflections found")
                 .font(AppTypography.body)
                 .foregroundColor(AppColors.textSecondary)
+
+            Text("Try different words or clear the search")
+                .font(AppTypography.caption)
+                .foregroundColor(AppColors.textSecondary.opacity(0.6))
                 .multilineTextAlignment(.center)
         }
-        .padding(32)
+        .padding(48)
     }
 
     private var archiveList: some View {

@@ -51,5 +51,6 @@ struct BreathingOrb: View {
                 .shadow(color: glowColor, radius: 80, x: 0, y: 0)
         }
         .frame(width: 160, height: 160)
+        .animation(.easeInOut(duration: 4).repeatForever(autoreverses: true), value: scale)
     }
 }

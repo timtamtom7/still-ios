@@ -31,6 +31,9 @@ final class RitualViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     @Published var breathingScale: CGFloat = 1.0
+    @Published var showSaveError: Bool = false
+    @Published var saveErrorMessage: String = "Your reflection couldn't be saved. Please try again."
+    @Published var showOfflineBanner: Bool = false
 
     var isEvening: Bool {
         let hour = Calendar.current.component(.hour, from: Date())
@@ -52,6 +55,15 @@ final class RitualViewModel: ObservableObject {
     init() {
         loadState()
         setupTypingDetection()
+        checkCloudKitStatus()
+    }
+
+    private func checkCloudKitStatus() {
+        cloudKit.checkAccountStatus { available in
+            DispatchQueue.main.async {
+                self.showOfflineBanner = !available && self.cloudKit.isEnabled
+            }
+        }
     }
 
     private func setupTypingDetection() {
@@ -149,7 +161,13 @@ final class RitualViewModel: ObservableObject {
 
         do {
             try db.saveReflection(reflection)
-            cloudKit.saveReflection(reflection) { _ in }
+            cloudKit.saveReflection(reflection) { success in
+                if !success {
+                    DispatchQueue.main.async {
+                        self.showSaveError = true
+                    }
+                }
+            }
 
             withAnimation(.easeInOut(duration: 1.2)) {
                 state = .completed
@@ -165,6 +183,8 @@ final class RitualViewModel: ObservableObject {
             }
         } catch {
             print("Failed to save reflection: \(error)")
+            showSaveError = true
+            saveErrorMessage = "Failed to save: \(error.localizedDescription)"
         }
     }
 
@@ -185,6 +205,10 @@ final class RitualViewModel: ObservableObject {
         withAnimation(.easeInOut(duration: 0.4)) {
             showNudge = false
         }
+    }
+
+    func dismissSaveError() {
+        showSaveError = false
     }
 
     func resetForTesting() {

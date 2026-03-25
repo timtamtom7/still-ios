@@ -69,11 +69,12 @@ final class DatabaseService {
 
     private func migrateOldReflections() {
         do {
-            let count = try db?.scalar(reflections.filter(questionRating == nil).count) ?? 0
+            guard let db = db else { return }
+            let count = try db.scalar(reflections.filter(questionRating == nil).count)
             if count > 0 {
-                for row in try db!.prepare(reflections.filter(questionRating == nil)) {
+                for row in try db.prepare(reflections.filter(questionRating == nil)) {
                     let update = reflections.filter(id == row[id])
-                    try db?.run(update.update(
+                    try db.run(update.update(
                         questionRating <- nil,
                         soundUsed <- nil,
                         questionCategory <- nil

@@ -27,6 +27,7 @@ final class WeekReviewViewModel: ObservableObject {
     @Published var daysUntilSunday: Int = 0
     @Published var isSunday: Bool = false
     @Published var isLoading: Bool = false
+    @Published var loadError: String?
     @Published var weekComparison: WeekComparison?
 
     private let db = DatabaseService.shared
@@ -50,16 +51,19 @@ final class WeekReviewViewModel: ObservableObject {
         guard isSunday else {
             sections = []
             weekComparison = nil
+            loadError = nil
             return
         }
 
         isLoading = true
+        loadError = nil
 
         let calendar = Calendar.current
         let today = Date()
         guard let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today)),
               let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek) else {
             isLoading = false
+            loadError = "Couldn't determine week boundaries"
             return
         }
 
@@ -70,39 +74,45 @@ final class WeekReviewViewModel: ObservableObject {
         Task { @MainActor in
             try? await Task.sleep(nanoseconds: 500_000_000)
 
-            // Week comparison
-            let momentum = computeMomentumScore(thisWeek: thisWeekCount, lastWeek: lastWeekCount, reflections: weekReflections)
-            let theme = computeWeekTheme(from: weekReflections)
+            do {
+                // Week comparison
+                let momentum = computeMomentumScore(thisWeek: thisWeekCount, lastWeek: lastWeekCount, reflections: weekReflections)
+                let theme = computeWeekTheme(from: weekReflections)
 
-            weekComparison = WeekComparison(
-                thisWeekCount: thisWeekCount,
-                lastWeekCount: lastWeekCount,
-                momentumScore: momentum,
-                weekTheme: theme
-            )
-
-            // Section reflections
-            let significant = weekReflections.filter { $0.text.count > 80 }
-            let lighter = weekReflections.filter { $0.text.count <= 80 }
-            let themeBased = extractPatterns(from: weekReflections)
-
-            sections = [
-                WeekReviewSection(
-                    title: "What mattered",
-                    subtitle: "The reflections that carried weight",
-                    reflections: significant
-                ),
-                WeekReviewSection(
-                    title: "What faded",
-                    subtitle: "Lighter moments, smaller observations",
-                    reflections: lighter
-                ),
-                WeekReviewSection(
-                    title: "What mattered that you didn't notice",
-                    subtitle: "Patterns beneath the surface",
-                    reflections: themeBased
+                weekComparison = WeekComparison(
+                    thisWeekCount: thisWeekCount,
+                    lastWeekCount: lastWeekCount,
+                    momentumScore: momentum,
+                    weekTheme: theme
                 )
-            ]
+
+                // Section reflections
+                let significant = weekReflections.filter { $0.text.count > 80 }
+                let lighter = weekReflections.filter { $0.text.count <= 80 }
+                let themeBased = extractPatterns(from: weekReflections)
+
+                sections = [
+                    WeekReviewSection(
+                        title: "What mattered",
+                        subtitle: "The reflections that carried weight",
+                        reflections: significant
+                    ),
+                    WeekReviewSection(
+                        title: "What faded",
+                        subtitle: "Lighter moments, smaller observations",
+                        reflections: lighter
+                    ),
+                    WeekReviewSection(
+                        title: "What mattered that you didn't notice",
+                        subtitle: "Patterns beneath the surface",
+                        reflections: themeBased
+                    )
+                ]
+
+                self.loadError = nil
+            } catch {
+                self.loadError = "Couldn't load your week"
+            }
 
             self.isLoading = false
         }
@@ -193,5 +203,9 @@ final class WeekReviewViewModel: ObservableObject {
     func refresh() {
         checkIfSunday()
         loadWeekReview()
+    }
+
+    func dismissError() {
+        loadError = nil
     }
 }

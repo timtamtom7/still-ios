@@ -74,7 +74,6 @@ final class ArchiveViewModel: ObservableObject {
 
     func deleteReflection(_ reflection: Reflection) {
         reflections.removeAll { $0.id == reflection.id }
-        try? DatabaseService.shared.saveReflection(reflection)
-        loadReflections()
+        groupByWeek()
     }
 }
