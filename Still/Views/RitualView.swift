@@ -19,19 +19,21 @@ struct RitualView: View {
             AppColors.background
                 .ignoresSafeArea()
 
-            ScrollView {
-                VStack(spacing: 0) {
-                    topBar
+            GeometryReader { geometry in
+                ScrollView {
+                    VStack(spacing: 0) {
+                        topBar
 
-                    Spacer(minLength: 32)
+                        Spacer(minLength: 32)
 
-                    orbSection
+                        orbSection
 
-                    Spacer(minLength: 32)
+                        Spacer(minLength: 32)
 
-                    bottomSection
+                        bottomSection
+                    }
+                    .frame(minHeight: geometry.size.height - 120)
                 }
-                .frame(minHeight: UIScreen.main.bounds.height - 120)
             }
 
             // Rating overlay

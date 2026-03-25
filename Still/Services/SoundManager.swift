@@ -70,16 +70,18 @@ final class SoundManager: ObservableObject {
         let volumeStep = player.volume / Float(steps)
 
         fadeTimer?.invalidate()
-        fadeTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] timer in
-            guard let self = self, let player = self.audioPlayer else {
-                timer.invalidate()
+        fadeTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+
+            guard let player = self.audioPlayer else {
+                self.fadeTimer?.invalidate()
                 return
             }
 
             if player.volume > volumeStep {
                 player.volume -= volumeStep
             } else {
-                timer.invalidate()
+                self.fadeTimer?.invalidate()
                 player.stop()
                 self.isPlaying = false
                 self.isFading = false
@@ -119,6 +121,7 @@ final class SoundManager: ObservableObject {
         // brown noise, rain, ocean waves procedurally
         // For now, the app gracefully degrades without audio files
         print("[\(sound.rawValue)] Audio asset not found - add \(sound.rawValue.lowercased().replacingOccurrences(of: " ", with: "_")).mp3 to Assets")
+        isPlaying = false
     }
 
     func restoreVolume() {

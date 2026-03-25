@@ -12,8 +12,10 @@ struct WeekReviewView: View {
                 if viewModel.isSunday {
                     if viewModel.isLoading {
                         loadingState
-                    } else {
+                    } else if viewModel.loadError != nil {
                         errorState
+                    } else {
+                        reviewContent
                     }
                 } else {
                     countdownState
@@ -42,27 +44,23 @@ struct WeekReviewView: View {
 
     @ViewBuilder
     private var errorState: some View {
-        if let error = viewModel.loadError {
-            VStack(spacing: 16) {
-                Image(systemName: "exclamationmark.triangle")
-                    .font(.system(size: 40))
-                    .foregroundColor(AppColors.amber.opacity(0.7))
+        VStack(spacing: 16) {
+            Image(systemName: "exclamationmark.triangle")
+                .font(.system(size: 40))
+                .foregroundColor(AppColors.amber.opacity(0.7))
 
-                Text(error)
-                    .font(AppTypography.body)
-                    .foregroundColor(AppColors.textSecondary)
-                    .multilineTextAlignment(.center)
+            Text(viewModel.loadError ?? "Something went wrong")
+                .font(AppTypography.body)
+                .foregroundColor(AppColors.textSecondary)
+                .multilineTextAlignment(.center)
 
-                Button("Try Again") {
-                    viewModel.refresh()
-                }
-                .font(AppTypography.button)
-                .foregroundColor(AppColors.amber)
+            Button("Try Again") {
+                viewModel.refresh()
             }
-            .padding(48)
-        } else {
-            reviewContent
+            .font(AppTypography.button)
+            .foregroundColor(AppColors.amber)
         }
+        .padding(48)
     }
 
     private var reviewContent: some View {

@@ -12,7 +12,6 @@ final class RitualViewModel: ObservableObject {
     @Published var selectedSound: AmbientSound = .silence
     @Published var showRating: Bool = false
     @Published var showTypewriter: Bool = false
-    @Published var typewriterProgress: CGFloat = 0
 
     // Memory lane
     @Published var oneYearAgoReflection: Reflection?
@@ -113,8 +112,10 @@ final class RitualViewModel: ObservableObject {
         breathingTimer?.invalidate()
         // 8-second breathing cycle
         breathingTimer = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { [weak self] _ in
-            withAnimation(.easeInOut(duration: 4).repeatForever(autoreverses: true)) {
-                self?.breathingScale = 1.08
+            Task { @MainActor in
+                withAnimation(.easeInOut(duration: 4).repeatForever(autoreverses: true)) {
+                    self?.breathingScale = 1.08
+                }
             }
         }
         // Start subtle haptic pattern

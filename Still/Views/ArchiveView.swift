@@ -27,6 +27,9 @@ struct ArchiveView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         withAnimation(.easeInOut(duration: 0.3)) {
+                            if isSearching {
+                                viewModel.searchQuery = ""
+                            }
                             isSearching.toggle()
                         }
                     } label: {
