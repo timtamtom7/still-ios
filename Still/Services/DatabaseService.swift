@@ -12,6 +12,9 @@ final class DatabaseService {
     private let question = Expression<String>("question")
     private let text = Expression<String>("text")
     private let createdAtTimestamp = Expression<Double>("created_at")
+    private let questionRating = Expression<Int?>("question_rating")
+    private let soundUsed = Expression<String?>("sound_used")
+    private let questionCategory = Expression<String?>("question_category")
 
     private let questions = Table("questions")
     private let questionId = Expression<String>("id")
@@ -44,6 +47,9 @@ final class DatabaseService {
             t.column(question)
             t.column(text)
             t.column(createdAtTimestamp)
+            t.column(questionRating)
+            t.column(soundUsed)
+            t.column(questionCategory)
         })
 
         try db?.run(questions.create(ifNotExists: true) { t in
@@ -56,29 +62,71 @@ final class DatabaseService {
             t.column(settingKey, primaryKey: true)
             t.column(settingValue)
         })
+
+        // Migrate old reflections that don't have new columns
+        migrateOldReflections()
+    }
+
+    private func migrateOldReflections() {
+        do {
+            let count = try db?.scalar(reflections.filter(questionRating == nil).count) ?? 0
+            if count > 0 {
+                for row in try db!.prepare(reflections.filter(questionRating == nil)) {
+                    let update = reflections.filter(id == row[id])
+                    try db?.run(update.update(
+                        questionRating <- nil,
+                        soundUsed <- nil,
+                        questionCategory <- nil
+                    ))
+                }
+            }
+        } catch {
+            print("Migration note: \(error)")
+        }
     }
 
     // MARK: - Reflections
 
     func saveReflection(_ reflection: Reflection) throws {
+        let soundStr = reflection.soundUsed?.rawValue
+        let catStr = reflection.questionCategory?.rawValue
         let insert = reflections.insert(
             id <- reflection.id.uuidString,
             dateTimestamp <- reflection.date.timeIntervalSince1970,
             question <- reflection.question,
             text <- reflection.text,
-            createdAtTimestamp <- reflection.createdAt.timeIntervalSince1970
+            createdAtTimestamp <- reflection.createdAt.timeIntervalSince1970,
+            questionRating <- reflection.questionRating,
+            soundUsed <- soundStr,
+            questionCategory <- catStr
         )
         try db?.run(insert)
     }
 
+    func updateReflection(_ reflection: Reflection) throws {
+        let record = reflections.filter(id == reflection.id.uuidString)
+        let soundStr = reflection.soundUsed?.rawValue
+        let catStr = reflection.questionCategory?.rawValue
+        try db?.run(record.update(
+            questionRating <- reflection.questionRating,
+            soundUsed <- soundStr,
+            questionCategory <- catStr
+        ))
+    }
+
     private func rowToReflection(_ row: Row) -> Reflection? {
         guard let uuid = UUID(uuidString: row[id]) else { return nil }
+        let sound: AmbientSound? = row[soundUsed].flatMap { AmbientSound(rawValue: $0) }
+        let cat: QuestionCategory? = row[questionCategory].flatMap { QuestionCategory(rawValue: $0) }
         return Reflection(
             id: uuid,
             date: Date(timeIntervalSince1970: row[dateTimestamp]),
             question: row[question],
             text: row[text],
-            createdAt: Date(timeIntervalSince1970: row[createdAtTimestamp])
+            createdAt: Date(timeIntervalSince1970: row[createdAtTimestamp]),
+            questionRating: row[questionRating],
+            soundUsed: sound,
+            questionCategory: cat
         )
     }
 
@@ -157,6 +205,95 @@ final class DatabaseService {
             print("Failed to fetch range: \(error)")
         }
         return result
+    }
+
+    // MARK: - Memory Lane
+
+    func getReflectionOneYearAgo() -> Reflection? {
+        guard let db = db else { return nil }
+        let calendar = Calendar.current
+        guard let oneYearAgo = calendar.date(byAdding: .year, value: -1, to: Date()) else { return nil }
+        let startOfDay = calendar.startOfDay(for: oneYearAgo)
+        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+        let startTs = startOfDay.timeIntervalSince1970
+        let endTs = endOfDay.timeIntervalSince1970
+
+        do {
+            let query = reflections.filter(dateTimestamp >= startTs && dateTimestamp < endTs)
+            for row in try db.prepare(query) {
+                if let reflection = rowToReflection(row) {
+                    return reflection
+                }
+            }
+        } catch {
+            print("Failed to fetch one-year-ago reflection: \(error)")
+        }
+        return nil
+    }
+
+    func getReflectionOneMonthAgo() -> Reflection? {
+        guard let db = db else { return nil }
+        let calendar = Calendar.current
+        guard let oneMonthAgo = calendar.date(byAdding: .month, value: -1, to: Date()) else { return nil }
+        let startOfDay = calendar.startOfDay(for: oneMonthAgo)
+        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+        let startTs = startOfDay.timeIntervalSince1970
+        let endTs = endOfDay.timeIntervalSince1970
+
+        do {
+            let query = reflections.filter(dateTimestamp >= startTs && dateTimestamp < endTs)
+            for row in try db.prepare(query) {
+                if let reflection = rowToReflection(row) {
+                    return reflection
+                }
+            }
+        } catch {
+            print("Failed to fetch one-month-ago reflection: \(error)")
+        }
+        return nil
+    }
+
+    func getReflectionsOnThisDay() -> [Reflection] {
+        guard let db = db else { return [] }
+        let calendar = Calendar.current
+        let today = Date()
+        let day = calendar.component(.day, from: today)
+        let month = calendar.component(.month, from: today)
+
+        var result: [Reflection] = []
+        do {
+            for row in try db.prepare(reflections.order(dateTimestamp.desc)) {
+                if let reflection = rowToReflection(row) {
+                    let refDay = calendar.component(.day, from: reflection.date)
+                    let refMonth = calendar.component(.month, from: reflection.date)
+                    let refYear = calendar.component(.year, from: reflection.date)
+                    let thisYear = calendar.component(.year, from: today)
+                    if refDay == day && refMonth == month && refYear != thisYear {
+                        result.append(reflection)
+                    }
+                }
+            }
+        } catch {
+            print("Failed to fetch this-day reflections: \(error)")
+        }
+        return result
+    }
+
+    // MARK: - Week Comparison
+
+    func getReflectionCountThisWeek() -> Int {
+        let calendar = Calendar.current
+        guard let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())),
+              let endOfWeek = calendar.date(byAdding: .day, value: 7, to: startOfWeek) else { return 0 }
+        return getReflections(from: startOfWeek, to: endOfWeek).count
+    }
+
+    func getReflectionCountLastWeek() -> Int {
+        let calendar = Calendar.current
+        guard let startOfThisWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())),
+              let startOfLastWeek = calendar.date(byAdding: .day, value: -7, to: startOfThisWeek),
+              let endOfLastWeek = calendar.date(byAdding: .day, value: 7, to: startOfLastWeek) else { return 0 }
+        return getReflections(from: startOfLastWeek, to: endOfLastWeek).count
     }
 
     // MARK: - Settings

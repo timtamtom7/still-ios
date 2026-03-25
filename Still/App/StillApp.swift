@@ -1,5 +1,13 @@
 import SwiftUI
 
+enum RitualState {
+    case waiting
+    case ready
+    case reflecting
+    case completed
+    case skipped
+}
+
 @main
 struct StillApp: App {
     @StateObject private var ritualViewModel = RitualViewModel()

@@ -2,27 +2,34 @@ import Foundation
 import Combine
 import SwiftUI
 
-enum RitualState {
-    case waiting
-    case ready
-    case reflecting
-    case completed
-    case skipped
-}
-
+@MainActor
 final class RitualViewModel: ObservableObject {
     @Published var state: RitualState = .waiting
     @Published var todaysQuestion: String = ""
     @Published var reflectionText: String = ""
     @Published var showNudge: Bool = false
     @Published var nudgeMessage: String = ""
+    @Published var selectedSound: AmbientSound = .silence
+    @Published var showRating: Bool = false
+    @Published var showTypewriter: Bool = false
+    @Published var typewriterProgress: CGFloat = 0
+
+    // Memory lane
+    @Published var oneYearAgoReflection: Reflection?
+    @Published var oneMonthAgoReflection: Reflection?
+    @Published var thisDayInHistoryReflections: [Reflection] = []
 
     private let db = DatabaseService.shared
     private let questionBank = QuestionBank.shared
     private let haptics = HapticManager.shared
     private let cloudKit = CloudKitService.shared
+    private let soundManager = SoundManager.shared
 
     private var breathingTimer: Timer?
+    private var typewriterTimer: Timer?
+    private var typingDebounce: AnyCancellable?
+    private var cancellables = Set<AnyCancellable>()
+
     @Published var breathingScale: CGFloat = 1.0
 
     var isEvening: Bool {
@@ -44,6 +51,19 @@ final class RitualViewModel: ObservableObject {
 
     init() {
         loadState()
+        setupTypingDetection()
+    }
+
+    private func setupTypingDetection() {
+        $reflectionText
+            .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
+            .sink { [weak self] text in
+                if text.count > 10 && self?.state == .reflecting {
+                    // User is actively typing - fade ambient sound
+                    self?.soundManager.pauseForReflection()
+                }
+            }
+            .store(in: &cancellables)
     }
 
     func loadState() {
@@ -51,34 +71,48 @@ final class RitualViewModel: ObservableObject {
 
         if hasReflectedTonight {
             state = .completed
+            checkMemoryLane()
             return
         }
 
         if !isEvening {
-            if db.getReflections(for: Calendar.current.date(byAdding: .day, value: -1, to: today)!).isEmpty {
+            if db.getReflections(for: Calendar.current.date(byAdding: .day, value: -1, to: today)!).isEmpty == false {
                 showNudge = true
                 nudgeMessage = "Still held yesterday's question for you"
             }
             state = .waiting
+            checkMemoryLane()
             return
         }
 
         todaysQuestion = questionBank.todaysQuestion()
+        selectedSound = soundManager.currentSound
         state = .ready
+        checkMemoryLane()
+    }
+
+    private func checkMemoryLane() {
+        oneYearAgoReflection = db.getReflectionOneYearAgo()
+        oneMonthAgoReflection = db.getReflectionOneMonthAgo()
+        thisDayInHistoryReflections = db.getReflectionsOnThisDay()
     }
 
     func startBreathing() {
         breathingTimer?.invalidate()
-        breathingTimer = Timer.scheduledTimer(withTimeInterval: 4.0, repeats: true) { [weak self] _ in
+        // 8-second breathing cycle
+        breathingTimer = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { [weak self] _ in
             withAnimation(.easeInOut(duration: 4).repeatForever(autoreverses: true)) {
                 self?.breathingScale = 1.08
             }
         }
+        // Start subtle haptic pattern
+        haptics.startBreathingHaptics()
     }
 
     func stopBreathing() {
         breathingTimer?.invalidate()
         breathingTimer = nil
+        haptics.stopBreathingHaptics()
     }
 
     func tapOrb() {
@@ -87,6 +121,15 @@ final class RitualViewModel: ObservableObject {
         withAnimation(.easeInOut(duration: 0.6)) {
             state = .reflecting
         }
+
+        // Start ambient sound for reflecting
+        if selectedSound != .silence {
+            soundManager.restoreVolume()
+            soundManager.play()
+        }
+
+        // Trigger typewriter effect for question
+        showTypewriter = true
     }
 
     func submitReflection() {
@@ -94,9 +137,14 @@ final class RitualViewModel: ObservableObject {
 
         haptics.submitTap()
 
+        // Determine question category
+        let category = questionBank.category(for: todaysQuestion)
+
         let reflection = Reflection(
             question: todaysQuestion,
-            text: reflectionText.trimmingCharacters(in: .whitespacesAndNewlines)
+            text: reflectionText.trimmingCharacters(in: .whitespacesAndNewlines),
+            soundUsed: selectedSound,
+            questionCategory: category
         )
 
         do {
@@ -106,8 +154,30 @@ final class RitualViewModel: ObservableObject {
             withAnimation(.easeInOut(duration: 1.2)) {
                 state = .completed
             }
+
+            // Stop ambient sound
+            soundManager.stop()
+
+            // Show rating after a brief moment
+            Task { @MainActor in
+                try? await Task.sleep(nanoseconds: 1_500_000_000)
+                self.showRating = true
+            }
         } catch {
             print("Failed to save reflection: \(error)")
+        }
+    }
+
+    func rateQuestion(_ rating: Int) {
+        questionBank.recordRating(for: todaysQuestion, rating: rating)
+        showRating = false
+
+        // Update the reflection with rating
+        let today = Date()
+        let todaysReflections = db.getReflections(for: today)
+        if var lastReflection = todaysReflections.first {
+            lastReflection.questionRating = rating
+            try? db.updateReflection(lastReflection)
         }
     }
 
@@ -121,5 +191,18 @@ final class RitualViewModel: ObservableObject {
         state = .ready
         reflectionText = ""
         todaysQuestion = questionBank.todaysQuestion()
+        showRating = false
+        showTypewriter = false
     }
+
+    func selectSound(_ sound: AmbientSound) {
+        selectedSound = sound
+        soundManager.selectSound(sound)
+        if sound != .silence && state == .reflecting {
+            soundManager.play()
+        } else {
+            soundManager.stop()
+        }
+    }
+
 }

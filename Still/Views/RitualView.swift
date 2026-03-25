@@ -2,6 +2,7 @@ import SwiftUI
 
 struct RitualView: View {
     @EnvironmentObject var viewModel: RitualViewModel
+    @ObservedObject var soundManager = SoundManager.shared
     @State private var animationPhase: CGFloat = 1.0
 
     private var orbState: OrbState {
@@ -19,32 +20,79 @@ struct RitualView: View {
             AppColors.background
                 .ignoresSafeArea()
 
-            VStack(spacing: 0) {
-                if viewModel.showNudge {
-                    NudgeBanner(message: viewModel.nudgeMessage) {
-                        viewModel.dismissNudge()
-                    }
-                    .padding(.horizontal, 32)
-                    .padding(.top, 16)
-                    .transition(.move(edge: .top).combined(with: .opacity))
+            ScrollView {
+                VStack(spacing: 0) {
+                    topBar
+
+                    Spacer(minLength: 32)
+
+                    orbSection
+
+                    Spacer(minLength: 32)
+
+                    bottomSection
                 }
-
-                Spacer()
-
-                orbSection
-
-                Spacer()
-
-                bottomSection
+                .frame(minHeight: UIScreen.main.bounds.height - 120)
             }
-            .animation(.easeInOut(duration: 0.6), value: viewModel.state)
+
+            // Rating overlay
+            if viewModel.showRating {
+                ratingOverlay
+            }
         }
         .onAppear {
             if viewModel.state == .ready || viewModel.state == .waiting {
                 startBreathingAnimation()
+                viewModel.startBreathing()
             }
         }
     }
+
+    // MARK: - Top Bar
+
+    private var topBar: some View {
+        HStack {
+            if viewModel.state == .reflecting {
+                AmbientSoundPicker()
+                    .transition(.opacity.combined(with: .move(edge: .top)))
+            }
+            Spacer()
+
+            // Memory lane button
+            if hasMemoryLane {
+                NavigationLink {
+                    MemoryLaneView(
+                        oneYearAgo: viewModel.oneYearAgoReflection,
+                        oneMonthAgo: viewModel.oneMonthAgoReflection,
+                        thisDayInHistory: viewModel.thisDayInHistoryReflections
+                    )
+                } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: "clock.arrow.circlepath")
+                            .font(.system(size: 14))
+                        Text("Memories")
+                            .font(AppTypography.caption)
+                    }
+                    .foregroundColor(AppColors.amber.opacity(0.8))
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(AppColors.surface)
+                    .cornerRadius(16)
+                }
+            }
+        }
+        .padding(.horizontal, 32)
+        .padding(.top, 16)
+        .animation(.easeInOut(duration: 0.4), value: viewModel.state)
+    }
+
+    private var hasMemoryLane: Bool {
+        viewModel.oneYearAgoReflection != nil ||
+        viewModel.oneMonthAgoReflection != nil ||
+        !viewModel.thisDayInHistoryReflections.isEmpty
+    }
+
+    // MARK: - Orb Section
 
     private var orbSection: some View {
         VStack(spacing: 48) {
@@ -60,18 +108,30 @@ struct RitualView: View {
 
             questionView
                 .opacity(viewModel.state == .ready || viewModel.state == .reflecting ? 1 : 0)
-            .animation(.easeOut(duration: 0.8).delay(0.2), value: viewModel.state)
+                .animation(.easeOut(duration: 0.8).delay(0.2), value: viewModel.state)
         }
     }
+
+    // MARK: - Question View
 
     @ViewBuilder
     private var questionView: some View {
         VStack(spacing: 32) {
-            Text(viewModel.todaysQuestion)
-                .font(AppTypography.display)
-                .foregroundColor(AppColors.textPrimary)
-                .multilineTextAlignment(.center)
+            if viewModel.showTypewriter && viewModel.state == .reflecting {
+                TypewriterText(
+                    text: viewModel.todaysQuestion,
+                    font: AppTypography.display,
+                    color: AppColors.textPrimary,
+                    speed: 25
+                )
                 .padding(.horizontal, 32)
+            } else {
+                Text(viewModel.todaysQuestion)
+                    .font(AppTypography.display)
+                    .foregroundColor(AppColors.textPrimary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 32)
+            }
 
             if viewModel.state == .reflecting {
                 reflectionInputSection
@@ -80,6 +140,8 @@ struct RitualView: View {
         }
         .animation(.easeInOut(duration: 0.6), value: viewModel.state)
     }
+
+    // MARK: - Reflection Input
 
     private var reflectionInputSection: some View {
         VStack(spacing: 24) {
@@ -99,48 +161,190 @@ struct RitualView: View {
         }
     }
 
+    // MARK: - Bottom Section
+
     private var bottomSection: some View {
         VStack(spacing: 16) {
             switch viewModel.state {
             case .waiting:
-                Text("Still will be here tonight")
-                    .font(AppTypography.body)
-                    .foregroundColor(AppColors.textSecondary)
-                    .multilineTextAlignment(.center)
+                waitingView
 
             case .ready:
-                Text("Tap the orb when you're ready")
-                    .font(AppTypography.caption)
-                    .foregroundColor(AppColors.textSecondary)
+                readyView
 
             case .reflecting:
-                EmptyView()
+                reflectingView
 
             case .completed:
-                VStack(spacing: 8) {
-                    Text("Good night")
-                        .font(AppTypography.display)
-                        .foregroundColor(AppColors.textPrimary)
-
-                    Text("Your reflection has been held")
-                        .font(AppTypography.caption)
-                        .foregroundColor(AppColors.textSecondary)
-                }
-                .padding(.bottom, 40)
+                completedView
 
             case .skipped:
-                Text("Still is here when you're ready")
-                    .font(AppTypography.body)
-                    .foregroundColor(AppColors.textSecondary)
+                skippedView
             }
         }
         .padding(.horizontal, 32)
         .padding(.bottom, 60)
     }
 
+    @ViewBuilder
+    private var waitingView: some View {
+        VStack(spacing: 16) {
+            if viewModel.showNudge {
+                NudgeBanner(message: viewModel.nudgeMessage) {
+                    viewModel.dismissNudge()
+                }
+            }
+
+            Text("Still will be here tonight")
+                .font(AppTypography.body)
+                .foregroundColor(AppColors.textSecondary)
+                .multilineTextAlignment(.center)
+        }
+    }
+
+    @ViewBuilder
+    private var readyView: some View {
+        VStack(spacing: 8) {
+            if let yearAgo = viewModel.oneYearAgoReflection {
+                MemoryLaneCard(memoryType: .oneYearAgo, reflection: yearAgo)
+            }
+
+            Text("Tap the orb when you're ready")
+                .font(AppTypography.caption)
+                .foregroundColor(AppColors.textSecondary)
+        }
+    }
+
+    @ViewBuilder
+    private var reflectingView: some View {
+        EmptyView()
+    }
+
+    @ViewBuilder
+    private var completedView: some View {
+        VStack(spacing: 8) {
+            Text("Good night")
+                .font(AppTypography.display)
+                .foregroundColor(AppColors.textPrimary)
+
+            Text("Your reflection has been held")
+                .font(AppTypography.caption)
+                .foregroundColor(AppColors.textSecondary)
+        }
+        .padding(.bottom, 40)
+    }
+
+    @ViewBuilder
+    private var skippedView: some View {
+        Text("Still is here when you're ready")
+            .font(AppTypography.body)
+            .foregroundColor(AppColors.textSecondary)
+    }
+
+    // MARK: - Rating Overlay
+
+    private var ratingOverlay: some View {
+        ZStack {
+            Color.black.opacity(0.7)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    // Don't dismiss on background tap - require rating or skip
+                }
+
+            QuestionRatingView(
+                question: viewModel.todaysQuestion,
+                onRate: { rating in
+                    viewModel.rateQuestion(rating)
+                }
+            )
+            .padding(.horizontal, 32)
+        }
+        .transition(.opacity)
+    }
+
+    // MARK: - Animation
+
     private func startBreathingAnimation() {
         withAnimation(.easeInOut(duration: 4).repeatForever(autoreverses: true)) {
             animationPhase = 1.08
+        }
+    }
+}
+
+// MARK: - Memory Lane View
+
+struct MemoryLaneView: View {
+    let oneYearAgo: Reflection?
+    let oneMonthAgo: Reflection?
+    let thisDayInHistory: [Reflection]
+    @State private var selectedReflection: Reflection?
+
+    var body: some View {
+        ZStack {
+            AppColors.background
+                .ignoresSafeArea()
+
+            ScrollView {
+                VStack(spacing: 20) {
+                    if let yearAgo = oneYearAgo {
+                        MemoryLaneCard(memoryType: .oneYearAgo, reflection: yearAgo) { ref in
+                            selectedReflection = ref
+                        }
+                    }
+
+                    if let monthAgo = oneMonthAgo {
+                        MemoryLaneCard(memoryType: .oneMonthAgo, reflection: monthAgo) { ref in
+                            selectedReflection = ref
+                        }
+                    }
+
+                    if !thisDayInHistory.isEmpty {
+                        VStack(alignment: .leading, spacing: 12) {
+                            HStack(spacing: 8) {
+                                Image(systemName: "calendar")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(AppColors.amber)
+                                Text("This day in history")
+                                    .font(AppTypography.caption)
+                                    .foregroundColor(AppColors.amber)
+                                Spacer()
+                            }
+
+                            ForEach(thisDayInHistory) { reflection in
+                                MemoryLaneCard(memoryType: .thisDayInHistory, reflection: reflection) { ref in
+                                    selectedReflection = ref
+                                }
+                            }
+                        }
+                    }
+
+                    if oneYearAgo == nil && oneMonthAgo == nil && thisDayInHistory.isEmpty {
+                        VStack(spacing: 16) {
+                            Image(systemName: "clock.arrow.circlepath")
+                                .font(.system(size: 48))
+                                .foregroundColor(AppColors.textSecondary)
+
+                            Text("No memories yet")
+                                .font(AppTypography.body)
+                                .foregroundColor(AppColors.textSecondary)
+
+                            Text("Your past reflections will appear here on their anniversaries")
+                                .font(AppTypography.caption)
+                                .foregroundColor(AppColors.textSecondary.opacity(0.7))
+                                .multilineTextAlignment(.center)
+                        }
+                        .padding(48)
+                    }
+                }
+                .padding(24)
+            }
+        }
+        .navigationTitle("Memory Lane")
+        .navigationBarTitleDisplayMode(.large)
+        .toolbarBackground(AppColors.background, for: .navigationBar)
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .sheet(item: $selectedReflection) { reflection in
+            ReflectionDetailSheet(reflection: reflection)
         }
     }
 }

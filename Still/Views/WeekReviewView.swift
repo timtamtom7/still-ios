@@ -43,12 +43,26 @@ struct WeekReviewView: View {
     private var reviewContent: some View {
         ScrollView {
             LazyVStack(spacing: 24) {
-                if viewModel.sections.isEmpty {
+                if viewModel.sections.isEmpty && viewModel.weekComparison == nil {
                     emptyWeekState
                 } else {
+                    // Week comparison header
+                    if let comparison = viewModel.weekComparison {
+                        WeekComparisonView(
+                            thisWeekCount: comparison.thisWeekCount,
+                            lastWeekCount: comparison.lastWeekCount,
+                            momentumScore: comparison.momentumScore,
+                            weekTheme: comparison.weekTheme
+                        )
+                    }
+
+                    // Reflection sections
                     ForEach(viewModel.sections) { section in
                         WeekReviewCard(section: section)
                     }
+
+                    // Sunday preview - questions for the coming week
+                    SundayPreviewCard()
                 }
             }
             .padding(.horizontal, 24)
@@ -104,5 +118,67 @@ struct WeekReviewView: View {
             .padding(.bottom, 60)
         }
         .padding(32)
+    }
+}
+
+// MARK: - Sunday Preview Card
+
+struct SundayPreviewCard: View {
+    @State private var suggestedQuestions: [String] = []
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack(spacing: 8) {
+                Image(systemName: "sparkles")
+                    .font(.system(size: 12))
+                    .foregroundColor(AppColors.amber)
+
+                Text("Questions for the week ahead")
+                    .font(AppTypography.caption)
+                    .foregroundColor(AppColors.amber)
+
+                Spacer()
+            }
+
+            Text("Based on your reflection patterns, these questions may resonate with you soon:")
+                .font(AppTypography.caption)
+                .foregroundColor(AppColors.textSecondary)
+
+            if suggestedQuestions.isEmpty {
+                Text("Start reflecting to unlock personalized questions")
+                    .font(AppTypography.caption)
+                    .foregroundColor(AppColors.textSecondary.opacity(0.6))
+                    .italic()
+            } else {
+                VStack(alignment: .leading, spacing: 12) {
+                    ForEach(suggestedQuestions, id: \.self) { question in
+                        HStack(spacing: 8) {
+                            Circle()
+                                .fill(AppColors.amber.opacity(0.5))
+                                .frame(width: 6, height: 6)
+
+                            Text(question)
+                                .font(AppTypography.bodySmall)
+                                .foregroundColor(AppColors.textPrimary)
+                                .lineLimit(2)
+                        }
+                    }
+                }
+            }
+        }
+        .padding(20)
+        .background(AppColors.surface)
+        .cornerRadius(16)
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(AppColors.amber.opacity(0.2), lineWidth: 1)
+        )
+        .onAppear {
+            loadSuggestions()
+        }
+    }
+
+    private func loadSuggestions() {
+        suggestedQuestions = WeekReviewViewModel.getSuggestedQuestionsForWeek()
     }
 }
