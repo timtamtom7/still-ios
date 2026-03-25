@@ -96,9 +96,7 @@ struct WeekReviewView: View {
 
     private var emptyWeekState: some View {
         VStack(spacing: 16) {
-            Image(systemName: "sparkles")
-                .font(.system(size: 48))
-                .foregroundColor(AppColors.textSecondary)
+            StillEmptyIllustration(size: 160)
 
             Text("Your week will reveal itself Sunday night")
                 .font(AppTypography.body)

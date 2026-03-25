@@ -50,9 +50,7 @@ struct ArchiveView: View {
 
     private var emptyState: some View {
         VStack(spacing: 20) {
-            Image(systemName: "moon.stars")
-                .font(.system(size: 48))
-                .foregroundColor(AppColors.textSecondary.opacity(0.6))
+            StillEmptyIllustration(size: 180)
 
             VStack(spacing: 8) {
                 Text("Your reflections will live here")

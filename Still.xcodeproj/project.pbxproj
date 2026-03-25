@@ -31,6 +31,7 @@
 		7235626F45CD5C495AA1C204 /* StillWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2EE05025D61ACDFA2311E /* StillWatchApp.swift */; };
 		75898775F4BDFB1E7BD944BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B40BF53A30B089509254FB7 /* Assets.xcassets */; };
 		89BA3E633DC9B6F949298D7F /* AmbientSoundPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50892F7D48038A7AFE29C66 /* AmbientSoundPicker.swift */; };
+		8A44021891C3B6631A427C30 /* StillEmptyIllustration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CB04B6F80596E82E4210E8 /* StillEmptyIllustration.swift */; };
 		8D002BB600007BF032E2799B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C2AE7BF4F8912923B3A2 /* Colors.swift */; };
 		A2E0E8B76F95312796D57ECC /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4C58BC15CF6C8977932EA /* Question.swift */; };
 		A2F541494DF11D97F0CD12CC /* MemoryLaneCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824CA0D5D38D4A5E5099043D /* MemoryLaneCard.swift */; };
@@ -46,6 +47,7 @@
 		16CC99B5A1788C31E341EB8B /* StillApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StillApp.swift; sourceTree = "<group>"; };
 		193593C1E058E2D289F796C2 /* Still.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Still.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		203CFD861B29B8AAC15F709A /* CloudKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitService.swift; sourceTree = "<group>"; };
+		23CB04B6F80596E82E4210E8 /* StillEmptyIllustration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StillEmptyIllustration.swift; sourceTree = "<group>"; };
 		277438EB0A68DC07D4FCFB5E /* WeekReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekReviewView.swift; sourceTree = "<group>"; };
 		40F697959040688D28E8DD53 /* TypewriterText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypewriterText.swift; sourceTree = "<group>"; };
 		41D4C58BC15CF6C8977932EA /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				EEB1882CB058D2A7B1D15095 /* ReflectionCard.swift */,
 				FC98260E1406EE349243FF53 /* ReflectionInput.swift */,
 				53E1558BFE3DC76B94B5C655 /* SearchBar.swift */,
+				23CB04B6F80596E82E4210E8 /* StillEmptyIllustration.swift */,
 				A4EA07AE56F766F843DF2670 /* SubmitButton.swift */,
 				40F697959040688D28E8DD53 /* TypewriterText.swift */,
 				714B6DA94FA40DA5352859AD /* WeekComparisonView.swift */,
@@ -346,6 +349,7 @@
 				4CD8B85F1CF9CC04C78B26A5 /* SearchBar.swift in Sources */,
 				5C670767ACF6024F3186CBEF /* SoundManager.swift in Sources */,
 				1CF5212A3AF1674D6E7797EA /* StillApp.swift in Sources */,
+				8A44021891C3B6631A427C30 /* StillEmptyIllustration.swift in Sources */,
 				2DD637B2F66B176528BC80FC /* SubmitButton.swift in Sources */,
 				4135EF9819A55AD136A5D3F3 /* TypewriterText.swift in Sources */,
 				5F62DE9B1BE0C02C3EEDA795 /* Typography.swift in Sources */,
