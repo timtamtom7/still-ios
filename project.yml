@@ -3,6 +3,7 @@ options:
   bundleIdPrefix: com.still
   deploymentTarget:
     iOS: "26.0"
+    macOS: "15.0"
   xcodeVersion: "16.0"
   generateEmptyDirectories: true
   groupSortPosition: top
@@ -40,6 +41,41 @@ targets:
         INFOPLIST_KEY_UIUserInterfaceStyle: Dark
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+    dependencies:
+      - package: SQLite
+        product: SQLite
+
+  StillMac:
+    type: application
+    platform: macOS
+    sources:
+      - path: StillMac
+        excludes:
+          - "**/.DS_Store"
+      - path: Still/Models
+        excludes:
+          - "**/.DS_Store"
+      - path: Still/Services/DatabaseService.swift
+      - path: Still/Services/QuestionBank.swift
+      - path: Still/Services/AIService.swift
+      - path: Still/Utilities/Colors.swift
+      - path: Still/Utilities/Typography.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.still.app.macos
+        GENERATE_INFOPLIST_FILE: true
+        INFOPLIST_KEY_UIUserInterfaceStyle: Dark
+        INFOPLIST_KEY_NSHumanReadableCopyright: "Copyright © 2026 Still. All rights reserved."
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        MACOSX_DEPLOYMENT_TARGET: "15.0"
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Manual
+        PRODUCT_NAME: Still
+        SWIFT_EMIT_LOC_STRINGS: "YES"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_HARDENED_RUNTIME: "YES"
     dependencies:
       - package: SQLite
         product: SQLite

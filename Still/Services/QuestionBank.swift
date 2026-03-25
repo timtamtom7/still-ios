@@ -154,6 +154,11 @@ final class QuestionBank {
     }
 
     func todaysQuestion(excluding: String? = nil) -> String {
+        // Check for AI-generated seasonal or day-of-week questions
+        if let aiQuestion = todaysPersonalizedQuestion() {
+            return aiQuestion
+        }
+
         var availableIndices = Set(0..<cycleLength)
         availableIndices.subtract(usedQuestionIndices)
 
@@ -181,6 +186,42 @@ final class QuestionBank {
             return todaysQuestion(excluding: excluding)
         }
         return question
+    }
+
+    /// Returns an AI-personalized question if patterns are detected
+    func todaysPersonalizedQuestion() -> String? {
+        // Use seasonal question once per season (roughly)
+        let calendar = Calendar.current
+        let dayOfYear = calendar.ordinality(of: .day, in: .year, for: Date()) ?? 1
+        let seasonKey = dayOfYear / 90 // ~4 seasons
+
+        let lastSeasonKey = UserDefaults.standard.integer(forKey: "lastUsedSeasonKey")
+        if seasonKey != lastSeasonKey || UserDefaults.standard.string(forKey: "todaySeasonalQuestion") == nil {
+            if let seasonal = AIService.shared.seasonalQuestion() {
+                UserDefaults.standard.set(seasonal, forKey: "todaySeasonalQuestion")
+                UserDefaults.standard.set(seasonKey, forKey: "lastUsedSeasonKey")
+                return seasonal
+            }
+        }
+
+        // Use day-of-week question (different each day)
+        let todayKey = calendar.isDateInToday(Date()) ? "today" : "yesterday"
+        if let dayQuestion = AIService.shared.dayOfWeekQuestion() {
+            let stored = UserDefaults.standard.string(forKey: "lastDayQuestion") ?? ""
+            if stored != dayQuestion {
+                UserDefaults.standard.set(dayQuestion, forKey: "lastDayQuestion")
+                return dayQuestion
+            }
+        }
+
+        // Use AI-generated follow-up if we have a recent reflection
+        let recentReflections = DatabaseService.shared.getAllReflections().prefix(3)
+        if let lastReflection = recentReflections.first,
+           let followUp = AIService.shared.personalizedFollowUp(for: lastReflection) {
+            return followUp
+        }
+
+        return UserDefaults.standard.string(forKey: "todaySeasonalQuestion")
     }
 
     func questionForDate(_ date: Date) -> String {

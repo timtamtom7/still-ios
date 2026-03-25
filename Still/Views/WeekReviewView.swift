@@ -79,6 +79,9 @@ struct WeekReviewView: View {
                         )
                     }
 
+                    // Seasonal theme
+                    SeasonalThemeCard()
+
                     // Reflection sections
                     ForEach(viewModel.sections) { section in
                         WeekReviewCard(section: section)
@@ -144,6 +147,63 @@ struct WeekReviewView: View {
             .padding(.bottom, 60)
         }
         .padding(32)
+    }
+}
+
+// MARK: - Seasonal Theme Card
+
+struct SeasonalThemeCard: View {
+    @State private var seasonalQuestion: String?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 8) {
+                Image(systemName: seasonIcon)
+                    .font(.system(size: 12))
+                    .foregroundColor(AppColors.amber)
+
+                Text("This season in Still")
+                    .font(AppTypography.caption)
+                    .foregroundColor(AppColors.amber)
+
+                Spacer()
+            }
+
+            if let question = seasonalQuestion {
+                Text(question)
+                    .font(AppTypography.body)
+                    .foregroundColor(AppColors.textPrimary)
+                    .italic()
+            } else {
+                Text("Continue reflecting to uncover seasonal patterns")
+                    .font(AppTypography.caption)
+                    .foregroundColor(AppColors.textSecondary.opacity(0.6))
+            }
+        }
+        .padding(20)
+        .background(AppColors.surface)
+        .cornerRadius(16)
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(AppColors.amber.opacity(0.2), lineWidth: 1)
+        )
+        .onAppear {
+            loadSeasonalQuestion()
+        }
+    }
+
+    private var seasonIcon: String {
+        let calendar = Calendar.current
+        let month = calendar.component(.month, from: Date())
+
+        if month >= 3 && month <= 5 { return "leaf.fill" }
+        if month >= 6 && month <= 8 { return "sun.max.fill" }
+        if month >= 9 && month <= 11 { return "wind" }
+        return "snowflake"
+    }
+
+    private func loadSeasonalQuestion() {
+        seasonalQuestion = AIService.shared.seasonalQuestion()
     }
 }
 

@@ -51,6 +51,13 @@ struct ContentView: View {
                     Text("Week")
                 }
                 .tag(2)
+
+            LegacyView()
+                .tabItem {
+                    Image(systemName: "book.closed")
+                    Text("Legacy")
+                }
+                .tag(3)
         }
         .tint(AppColors.amber)
     }

@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct RitualView: View {
     @EnvironmentObject var viewModel: RitualViewModel
@@ -42,12 +43,21 @@ struct RitualView: View {
             }
         }
         .alert("Couldn't Save", isPresented: $viewModel.showSaveError) {
-            Button("Try Again") {
-                viewModel.dismissSaveError()
-                viewModel.submitReflection()
+            if viewModel.showUpgradePrompt {
+                Button("Upgrade to Pro") {
+                    viewModel.dismissSaveError()
+                    viewModel.showUpgradePrompt = false
+                    // Navigate to subscription - handled by parent
+                }
+            } else {
+                Button("Try Again") {
+                    viewModel.dismissSaveError()
+                    viewModel.submitReflection()
+                }
             }
             Button("Dismiss", role: .cancel) {
                 viewModel.dismissSaveError()
+                viewModel.showUpgradePrompt = false
             }
         } message: {
             Text(viewModel.saveErrorMessage)
@@ -129,17 +139,29 @@ struct RitualView: View {
         !viewModel.thisDayInHistoryReflections.isEmpty
     }
 
+    private var orbSize: BreathingOrb.OrbSize {
+        #if targetEnvironment(simulator)
+        let isIPad = UIDevice.current.userInterfaceIdiom == .pad
+        #else
+        let isIPad = false
+        #endif
+        if isIPad {
+            return .large
+        }
+        return .standard
+    }
+
     // MARK: - Orb Section
 
     private var orbSection: some View {
         VStack(spacing: 48) {
             ZStack {
-                BreathingOrb(state: orbState, scale: $viewModel.breathingScale)
+                BreathingOrb(state: orbState, scale: $viewModel.breathingScale, size: orbSize)
                     .onTapGesture {
                         viewModel.tapOrb()
                     }
             }
-            .frame(width: 160, height: 160)
+            .frame(width: orbSize.dimension, height: orbSize.dimension)
 
             questionView
                 .opacity(viewModel.state == .ready || viewModel.state == .reflecting ? 1 : 0)

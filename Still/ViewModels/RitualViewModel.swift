@@ -23,6 +23,7 @@ final class RitualViewModel: ObservableObject {
     private let haptics = HapticManager.shared
     private let cloudKit = CloudKitService.shared
     private let soundManager = SoundManager.shared
+    private let subscription = SubscriptionService.shared
 
     private var breathingTimer: Timer?
     private var typewriterTimer: Timer?
@@ -32,6 +33,7 @@ final class RitualViewModel: ObservableObject {
     @Published var breathingScale: CGFloat = 1.0
     @Published var showSaveError: Bool = false
     @Published var saveErrorMessage: String = "Your reflection couldn't be saved. Please try again."
+    @Published var showUpgradePrompt: Bool = false
     @Published var showOfflineBanner: Bool = false
 
     var isEvening: Bool {
@@ -145,6 +147,14 @@ final class RitualViewModel: ObservableObject {
     func submitReflection() {
         guard !reflectionText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
 
+        // Check weekly limit for free users
+        if !subscription.isProActive && subscription.weeklyLimitReached {
+            showSaveError = true
+            showUpgradePrompt = true
+            saveErrorMessage = "You've reached your \(subscription.currentTier.weeklyLimit ?? 3) reflections per week. Upgrade to Pro for unlimited reflections."
+            return
+        }
+
         haptics.submitTap()
 
         // Determine question category
@@ -159,6 +169,7 @@ final class RitualViewModel: ObservableObject {
 
         do {
             try db.saveReflection(reflection)
+            subscription.incrementWeeklyCount()
             cloudKit.saveReflection(reflection) { success in
                 if !success {
                     DispatchQueue.main.async {
