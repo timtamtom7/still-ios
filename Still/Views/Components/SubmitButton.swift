@@ -27,6 +27,8 @@ struct SubmitButton: View {
         }
         .buttonStyle(ScaleButtonStyle())
         .disabled(!isEnabled)
+        .accessibilityLabel(title)
+        .accessibilityHint(isEnabled ? "Submits your reflection." : "Write something first to submit.")
     }
 }
 

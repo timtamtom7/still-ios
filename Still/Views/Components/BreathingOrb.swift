@@ -29,6 +29,15 @@ struct BreathingOrb: View {
         }
     }
 
+    private var stateHint: String {
+        switch state {
+        case .idle: return "Still waiting for evening. Take your time."
+        case .attentive: return "Tap to begin your reflection."
+        case .recording: return "Recording your reflection."
+        case .complete: return "Reflection complete. Good night."
+        }
+    }
+
     var body: some View {
         ZStack {
             Circle()
@@ -52,5 +61,7 @@ struct BreathingOrb: View {
         }
         .frame(width: 160, height: 160)
         .animation(.easeInOut(duration: 4).repeatForever(autoreverses: true), value: scale)
+        .accessibilityLabel("Breathing orb")
+        .accessibilityHint(stateHint)
     }
 }

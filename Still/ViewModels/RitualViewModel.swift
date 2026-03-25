@@ -110,15 +110,12 @@ final class RitualViewModel: ObservableObject {
 
     func startBreathing() {
         breathingTimer?.invalidate()
-        // 8-second breathing cycle
-        breathingTimer = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { [weak self] _ in
-            Task { @MainActor in
-                withAnimation(.easeInOut(duration: 4).repeatForever(autoreverses: true)) {
-                    self?.breathingScale = 1.08
-                }
-            }
+        // 8-second breathing cycle: scale 1.0 → 1.08 over 4s, then back over 4s
+        withAnimation(.easeInOut(duration: 4).repeatForever(autoreverses: true)) {
+            breathingScale = 1.08
         }
-        // Start subtle haptic pattern
+        // Haptic pulses are handled by HapticManager.startBreathingHaptics()
+        // which fires a gentle pulse at the inhale peak (4s mark) each cycle
         haptics.startBreathingHaptics()
     }
 
