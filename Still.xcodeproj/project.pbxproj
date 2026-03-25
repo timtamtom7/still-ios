@@ -28,6 +28,7 @@
 		603A70F2DCDC509C1B592AA8 /* ReflectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC98260E1406EE349243FF53 /* ReflectionInput.swift */; };
 		61FF761BEC05FC67E62A42C8 /* NudgeBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B4561A4D97E8E3605CDFE6 /* NudgeBanner.swift */; };
 		685DAA3381BD34E3D3590FC7 /* ArchiveRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451A7C0649B3AEB5EDA552F4 /* ArchiveRow.swift */; };
+		7235626F45CD5C495AA1C204 /* StillWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2EE05025D61ACDFA2311E /* StillWatchApp.swift */; };
 		75898775F4BDFB1E7BD944BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B40BF53A30B089509254FB7 /* Assets.xcassets */; };
 		89BA3E633DC9B6F949298D7F /* AmbientSoundPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50892F7D48038A7AFE29C66 /* AmbientSoundPicker.swift */; };
 		8D002BB600007BF032E2799B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C2AE7BF4F8912923B3A2 /* Colors.swift */; };
@@ -52,6 +53,7 @@
 		53E1558BFE3DC76B94B5C655 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		5B40BF53A30B089509254FB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6621F8AF40BCACA1193C467D /* Reflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reflection.swift; sourceTree = "<group>"; };
+		6CF2EE05025D61ACDFA2311E /* StillWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StillWatchApp.swift; sourceTree = "<group>"; };
 		6F95C8C27B59F97D4FB68EA4 /* QuestionBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBank.swift; sourceTree = "<group>"; };
 		714B6DA94FA40DA5352859AD /* WeekComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekComparisonView.swift; sourceTree = "<group>"; };
 		752D2D405A362E50B71062E0 /* RitualView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RitualView.swift; sourceTree = "<group>"; };
@@ -62,7 +64,9 @@
 		A0C8C7F0F7539F71C126D6DF /* BreathingOrb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingOrb.swift; sourceTree = "<group>"; };
 		A4EA07AE56F766F843DF2670 /* SubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButton.swift; sourceTree = "<group>"; };
 		AA50037AA6620B89E48E2F79 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		B39E0C581BBDFEE14FE6D377 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B50892F7D48038A7AFE29C66 /* AmbientSoundPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientSoundPicker.swift; sourceTree = "<group>"; };
+		CB28BACDC642071D41F71043 /* StillWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StillWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1F23B2211E47EDA5255E8A6 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		DF6253BCBEE81F239B4D354A /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
 		E6D45025E6B67BDF4AD59943 /* RitualViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RitualViewModel.swift; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				1AD6987513E67B5BBC1578E8 /* Still */,
+				4F4A027CD5B6541C7BA7852A /* StillWatch */,
 				840A35E61B17558FC8F6BA24 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -128,6 +133,24 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		49A66E27C52340FB79F0F96F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				6CF2EE05025D61ACDFA2311E /* StillWatchApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4F4A027CD5B6541C7BA7852A /* StillWatch */ = {
+			isa = PBXGroup;
+			children = (
+				49A66E27C52340FB79F0F96F /* App */,
+				C631A76A05568D99F3595B98 /* Views */,
+				B39E0C581BBDFEE14FE6D377 /* Info.plist */,
+			);
+			path = StillWatch;
+			sourceTree = "<group>";
+		};
 		780E3292A0EAFEF626988B77 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				193593C1E058E2D289F796C2 /* Still.app */,
+				CB28BACDC642071D41F71043 /* StillWatch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,6 +194,13 @@
 				D1F23B2211E47EDA5255E8A6 /* Typography.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		C631A76A05568D99F3595B98 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CD0AD2D61EB8ED6E692F2186 /* Components */ = {
@@ -226,6 +257,21 @@
 			productReference = 193593C1E058E2D289F796C2 /* Still.app */;
 			productType = "com.apple.product-type.application";
 		};
+		519B0B4AE91CE13C23CCAEA3 /* StillWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18035886836BE99F0746F064 /* Build configuration list for PBXNativeTarget "StillWatch" */;
+			buildPhases = (
+				ACD556C964875D61AE5AD0AE /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StillWatch;
+			productName = StillWatch;
+			productReference = CB28BACDC642071D41F71043 /* StillWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -235,6 +281,10 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
+					519B0B4AE91CE13C23CCAEA3 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = D4C3CA34F2162AE68E04DF3F /* Build configuration list for PBXProject "Still" */;
@@ -253,6 +303,7 @@
 			projectRoot = "";
 			targets = (
 				30EB340DFB53288959370D0F /* Still */,
+				519B0B4AE91CE13C23CCAEA3 /* StillWatch */,
 			);
 		};
 /* End PBXProject section */
@@ -302,6 +353,14 @@
 				5AA534AC722760220B028BC4 /* WeekReviewCard.swift in Sources */,
 				52C4850806242FF4B6C383CC /* WeekReviewView.swift in Sources */,
 				590DA367AEDB1270969A3537 /* WeekReviewViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACD556C964875D61AE5AD0AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7235626F45CD5C495AA1C204 /* StillWatchApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,20 +422,38 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
+		};
+		43EB05AC74C3DC517FF078C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = StillWatch/Info.plist;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.still.app.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
 		};
 		6A6DAF68DDDD7EECD9C8C669 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -446,17 +523,17 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -479,9 +556,36 @@
 			};
 			name = Release;
 		};
+		FD779AD957D56A03D5D78207 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = StillWatch/Info.plist;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.still.app.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		18035886836BE99F0746F064 /* Build configuration list for PBXNativeTarget "StillWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD779AD957D56A03D5D78207 /* Debug */,
+				43EB05AC74C3DC517FF078C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		842991EF2FF19D3CFD473BC7 /* Build configuration list for PBXNativeTarget "Still" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
