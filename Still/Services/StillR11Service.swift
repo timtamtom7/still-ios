@@ -26,10 +26,10 @@ final class StillR11Service: ObservableObject {
     }
 
     static let bundledSessions: [GuidedSession] = [
-        GuidedSession(id: UUID(), title: "Finding Peace", theme: .grief, duration: 10, audioURL: nil, isBundled: true),
-        GuidedSession(id: UUID(), title: "Gratitude Practice", theme: .gratitude, duration: 5, audioURL: nil, isBundled: true),
-        GuidedSession(id: UUID(), title: "New Beginnings", theme: .transition, duration: 15, audioURL: nil, isBundled: true),
-        GuidedSession(id: UUID(), title: "Morning Renewal", theme: .renewal, duration: 10, audioURL: nil, isBundled: true)
+        GuidedSession(title: "Finding Peace", theme: .grief, duration: 10, audioURL: nil, isBundled: true),
+        GuidedSession(title: "Gratitude Practice", theme: .gratitude, duration: 5, audioURL: nil, isBundled: true),
+        GuidedSession(title: "New Beginnings", theme: .transition, duration: 15, audioURL: nil, isBundled: true),
+        GuidedSession(title: "Morning Renewal", theme: .renewal, duration: 10, audioURL: nil, isBundled: true)
     ]
 
     // MARK: - Legacy Planning
@@ -69,7 +69,6 @@ final class StillR11Service: ObservableObject {
 
     func shareAnonymously(reflection: ArchivedReflection) -> CommunityMoment {
         CommunityMoment(
-            id: UUID(),
             content: reflection.content,
             authorName: "Anonymous",
             theme: .gratitude,

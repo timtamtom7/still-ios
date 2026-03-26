@@ -9,42 +9,64 @@ final class SubscriptionService {
 
     // MARK: - Subscription Tiers
 
-    enum SubscriptionTier: String, Codable {
+    enum SubscriptionTier: String, Codable, CaseIterable {
         case free
         case pro
+        case master
 
         var displayName: String {
             switch self {
             case .free: return "Free"
             case .pro: return "Pro"
+            case .master: return "Master"
+            }
+        }
+
+        // R13: Updated pricing
+        var price: String {
+            switch self {
+            case .free: return "Free"
+            case .pro: return "$9.99/mo"
+            case .master: return "$19.99/mo"
             }
         }
 
         var weeklyLimit: Int? {
             switch self {
             case .free: return 3
-            case .pro: return nil // Unlimited
+            case .pro, .master: return nil // Unlimited
             }
         }
 
         var canExportLegacy: Bool {
             switch self {
             case .free: return false
-            case .pro: return true
+            case .pro, .master: return true
             }
         }
 
         var canGiftReflections: Bool {
             switch self {
             case .free: return false
-            case .pro: return true
+            case .pro, .master: return true
             }
         }
 
         var canUseMemorialMode: Bool {
             switch self {
             case .free: return false
-            case .pro: return true
+            case .pro, .master: return true
+            }
+        }
+
+        var features: [String] {
+            switch self {
+            case .free:
+                return ["3 reflections/week", "Basic breathing", "7-day history"]
+            case .pro:
+                return ["Unlimited reflections", "Advanced breathing", "AI insights", "Extended history", "Export data"]
+            case .master:
+                return ["Everything in Pro", "Personalized programs", "Biometric feedback", "Priority AI", "VIP support"]
             }
         }
 
@@ -52,6 +74,7 @@ final class SubscriptionService {
             switch self {
             case .free: return "3 reflections per week"
             case .pro: return "Unlimited reflections"
+            case .master: return "Master program access"
             }
         }
     }

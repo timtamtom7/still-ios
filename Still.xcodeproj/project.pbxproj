@@ -14,12 +14,14 @@
 		1CF5212A3AF1674D6E7797EA /* StillApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CC99B5A1788C31E341EB8B /* StillApp.swift */; };
 		24FAFF32DF2100CFE9216F76 /* BreathingOrb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8C7F0F7539F71C126D6DF /* BreathingOrb.swift */; };
 		289349B28999F899CEA14BFE /* CloudKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CFD861B29B8AAC15F709A /* CloudKitService.swift */; };
+		299B43D1C85BE1894E7E23FC /* StillR11Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58100D0ACE6830A5B85EE5B6 /* StillR11Service.swift */; };
 		2D3B84861529119CBC237F7C /* RitualViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D45025E6B67BDF4AD59943 /* RitualViewModel.swift */; };
 		2DD637B2F66B176528BC80FC /* SubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA07AE56F766F843DF2670 /* SubmitButton.swift */; };
 		3790162DD90FB0D2B7307DAF /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 1DC67BDE6325706C29685B52 /* SQLite */; };
 		3A096E1503A192A037618E7B /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6253BCBEE81F239B4D354A /* ArchiveView.swift */; };
 		3B3161BD71393B1E077B269F /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA70E3DBDA3F077F00C0346 /* AIService.swift */; };
 		3C0AA4E3705F26E832E850B5 /* WeekComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B6DA94FA40DA5352859AD /* WeekComparisonView.swift */; };
+		407C7BC27A15933A7050BEA9 /* AppleIntelligenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D92C68223378551F0D34EC /* AppleIntelligenceService.swift */; };
 		4135EF9819A55AD136A5D3F3 /* TypewriterText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F697959040688D28E8DD53 /* TypewriterText.swift */; };
 		46E8A09F5686778F951C9C6F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C2AE7BF4F8912923B3A2 /* Colors.swift */; };
 		4CD8B85F1CF9CC04C78B26A5 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E1558BFE3DC76B94B5C655 /* SearchBar.swift */; };
@@ -44,6 +46,7 @@
 		8D002BB600007BF032E2799B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C2AE7BF4F8912923B3A2 /* Colors.swift */; };
 		A2E0E8B76F95312796D57ECC /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4C58BC15CF6C8977932EA /* Question.swift */; };
 		A2F541494DF11D97F0CD12CC /* MemoryLaneCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824CA0D5D38D4A5E5099043D /* MemoryLaneCard.swift */; };
+		BA7AFA3FCCB3FCD0E3663FF8 /* SpatialBreathingRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8C2AEC56315A28A30B103 /* SpatialBreathingRoomView.swift */; };
 		BC17715C1E85A9C3807ED638 /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6621F8AF40BCACA1193C467D /* Reflection.swift */; };
 		C0F4F19FAF84CBF3DCEDB4A0 /* ArchiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCA2FE68A29C76B49D67E49 /* ArchiveViewModel.swift */; };
 		D04C2C674295285674F9FFFD /* ReflectionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB1882CB058D2A7B1D15095 /* ReflectionCard.swift */; };
@@ -52,6 +55,7 @@
 		DA4EF045F42EA7187AAB1008 /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6621F8AF40BCACA1193C467D /* Reflection.swift */; };
 		DC22D6A2AA832F24EEC4E4FE /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC29ED7E7BD029CCBA26A783 /* HapticManager.swift */; };
 		DFD8F2A07FCDF29BA4186286 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA50037AA6620B89E48E2F79 /* DatabaseService.swift */; };
+		E1EDE61594499B83DBC367D9 /* RetentionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67BB799361F45E5777DBD68 /* RetentionService.swift */; };
 		F3708646C48AAF09FE378FF1 /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAED40BD4E7A51AC3813069E /* SubscriptionService.swift */; };
 		FA9BF814514201513D93B4ED /* LegacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B30327A8BC53F1784971764 /* LegacyView.swift */; };
 /* End PBXBuildFile section */
@@ -68,6 +72,7 @@
 		41D4C58BC15CF6C8977932EA /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		451A7C0649B3AEB5EDA552F4 /* ArchiveRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveRow.swift; sourceTree = "<group>"; };
 		53E1558BFE3DC76B94B5C655 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		58100D0ACE6830A5B85EE5B6 /* StillR11Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StillR11Service.swift; sourceTree = "<group>"; };
 		58B48AC2D62014194318D685 /* StillMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StillMacApp.swift; sourceTree = "<group>"; };
 		5B40BF53A30B089509254FB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6621F8AF40BCACA1193C467D /* Reflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reflection.swift; sourceTree = "<group>"; };
@@ -84,6 +89,7 @@
 		91B4561A4D97E8E3605CDFE6 /* NudgeBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgeBanner.swift; sourceTree = "<group>"; };
 		9AA70E3DBDA3F077F00C0346 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
 		A0C8C7F0F7539F71C126D6DF /* BreathingOrb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingOrb.swift; sourceTree = "<group>"; };
+		A1D92C68223378551F0D34EC /* AppleIntelligenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIntelligenceService.swift; sourceTree = "<group>"; };
 		A4EA07AE56F766F843DF2670 /* SubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButton.swift; sourceTree = "<group>"; };
 		AA50037AA6620B89E48E2F79 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		B39E0C581BBDFEE14FE6D377 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -91,7 +97,9 @@
 		CAED40BD4E7A51AC3813069E /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
 		CB28BACDC642071D41F71043 /* StillWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StillWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1F23B2211E47EDA5255E8A6 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		D9A8C2AEC56315A28A30B103 /* SpatialBreathingRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialBreathingRoomView.swift; sourceTree = "<group>"; };
 		DF6253BCBEE81F239B4D354A /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
+		E67BB799361F45E5777DBD68 /* RetentionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetentionService.swift; sourceTree = "<group>"; };
 		E6D45025E6B67BDF4AD59943 /* RitualViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RitualViewModel.swift; sourceTree = "<group>"; };
 		EC29ED7E7BD029CCBA26A783 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		EEB1882CB058D2A7B1D15095 /* ReflectionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionCard.swift; sourceTree = "<group>"; };
@@ -149,12 +157,15 @@
 			isa = PBXGroup;
 			children = (
 				9AA70E3DBDA3F077F00C0346 /* AIService.swift */,
+				A1D92C68223378551F0D34EC /* AppleIntelligenceService.swift */,
 				203CFD861B29B8AAC15F709A /* CloudKitService.swift */,
 				AA50037AA6620B89E48E2F79 /* DatabaseService.swift */,
 				EC29ED7E7BD029CCBA26A783 /* HapticManager.swift */,
 				820441C9BF27B5DCBAA89692 /* LegacyService.swift */,
 				6F95C8C27B59F97D4FB68EA4 /* QuestionBank.swift */,
+				E67BB799361F45E5777DBD68 /* RetentionService.swift */,
 				79A4445EB1C62980F189BF0E /* SoundManager.swift */,
+				58100D0ACE6830A5B85EE5B6 /* StillR11Service.swift */,
 				CAED40BD4E7A51AC3813069E /* SubscriptionService.swift */,
 			);
 			path = Services;
@@ -275,6 +286,7 @@
 				DF6253BCBEE81F239B4D354A /* ArchiveView.swift */,
 				6B30327A8BC53F1784971764 /* LegacyView.swift */,
 				752D2D405A362E50B71062E0 /* RitualView.swift */,
+				D9A8C2AEC56315A28A30B103 /* SpatialBreathingRoomView.swift */,
 				1FBE968829B8362E88D8B147 /* SubscriptionView.swift */,
 				277438EB0A68DC07D4FCFB5E /* WeekReviewView.swift */,
 			);
@@ -411,6 +423,7 @@
 			files = (
 				3B3161BD71393B1E077B269F /* AIService.swift in Sources */,
 				89BA3E633DC9B6F949298D7F /* AmbientSoundPicker.swift in Sources */,
+				407C7BC27A15933A7050BEA9 /* AppleIntelligenceService.swift in Sources */,
 				685DAA3381BD34E3D3590FC7 /* ArchiveRow.swift in Sources */,
 				3A096E1503A192A037618E7B /* ArchiveView.swift in Sources */,
 				C0F4F19FAF84CBF3DCEDB4A0 /* ArchiveViewModel.swift in Sources */,
@@ -429,12 +442,15 @@
 				BC17715C1E85A9C3807ED638 /* Reflection.swift in Sources */,
 				D04C2C674295285674F9FFFD /* ReflectionCard.swift in Sources */,
 				603A70F2DCDC509C1B592AA8 /* ReflectionInput.swift in Sources */,
+				E1EDE61594499B83DBC367D9 /* RetentionService.swift in Sources */,
 				57E92A7923088C7C1D8B205D /* RitualView.swift in Sources */,
 				2D3B84861529119CBC237F7C /* RitualViewModel.swift in Sources */,
 				4CD8B85F1CF9CC04C78B26A5 /* SearchBar.swift in Sources */,
 				5C670767ACF6024F3186CBEF /* SoundManager.swift in Sources */,
+				BA7AFA3FCCB3FCD0E3663FF8 /* SpatialBreathingRoomView.swift in Sources */,
 				1CF5212A3AF1674D6E7797EA /* StillApp.swift in Sources */,
 				8A44021891C3B6631A427C30 /* StillEmptyIllustration.swift in Sources */,
+				299B43D1C85BE1894E7E23FC /* StillR11Service.swift in Sources */,
 				2DD637B2F66B176528BC80FC /* SubmitButton.swift in Sources */,
 				F3708646C48AAF09FE378FF1 /* SubscriptionService.swift in Sources */,
 				187419FD20BE929CF4BCC2C6 /* SubscriptionView.swift in Sources */,
