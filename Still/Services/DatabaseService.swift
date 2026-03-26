@@ -150,7 +150,7 @@ final class DatabaseService {
         guard let db = db else { return [] }
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: targetDate)
-        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay) ?? startOfDay
         let startTs = startOfDay.timeIntervalSince1970
         let endTs = endOfDay.timeIntervalSince1970
 
@@ -215,7 +215,7 @@ final class DatabaseService {
         let calendar = Calendar.current
         guard let oneYearAgo = calendar.date(byAdding: .year, value: -1, to: Date()) else { return nil }
         let startOfDay = calendar.startOfDay(for: oneYearAgo)
-        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay) ?? startOfDay
         let startTs = startOfDay.timeIntervalSince1970
         let endTs = endOfDay.timeIntervalSince1970
 
@@ -237,7 +237,7 @@ final class DatabaseService {
         let calendar = Calendar.current
         guard let oneMonthAgo = calendar.date(byAdding: .month, value: -1, to: Date()) else { return nil }
         let startOfDay = calendar.startOfDay(for: oneMonthAgo)
-        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay) ?? startOfDay
         let startTs = startOfDay.timeIntervalSince1970
         let endTs = endOfDay.timeIntervalSince1970
 

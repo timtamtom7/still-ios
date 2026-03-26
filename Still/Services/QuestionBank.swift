@@ -177,7 +177,7 @@ final class QuestionBank {
             return ratingA > ratingB
         }
 
-        let selectedIndex = sorted.first ?? Array(availableIndices).randomElement()!
+        let selectedIndex = sorted.first ?? Array(availableIndices).randomElement() ?? 0
         usedQuestionIndices.insert(selectedIndex)
         saveUsedIndices()
 
