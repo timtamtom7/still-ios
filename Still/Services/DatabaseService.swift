@@ -89,6 +89,10 @@ final class DatabaseService {
     // MARK: - Reflections
 
     func saveReflection(_ reflection: Reflection) throws {
+        guard let db = db else {
+            let nsError = NSError(domain: "DatabaseService", code: 1, userInfo: [NSLocalizedDescriptionKey: "Database connection not available"])
+            throw nsError
+        }
         let soundStr = reflection.soundUsed?.rawValue
         let catStr = reflection.questionCategory?.rawValue
         let insert = reflections.insert(
@@ -101,14 +105,18 @@ final class DatabaseService {
             soundUsed <- soundStr,
             questionCategory <- catStr
         )
-        try db?.run(insert)
+        try db.run(insert)
     }
 
     func updateReflection(_ reflection: Reflection) throws {
+        guard let db = db else {
+            let nsError = NSError(domain: "DatabaseService", code: 1, userInfo: [NSLocalizedDescriptionKey: "Database connection not available"])
+            throw nsError
+        }
         let record = reflections.filter(id == reflection.id.uuidString)
         let soundStr = reflection.soundUsed?.rawValue
         let catStr = reflection.questionCategory?.rawValue
-        try db?.run(record.update(
+        try db.run(record.update(
             questionRating <- reflection.questionRating,
             soundUsed <- soundStr,
             questionCategory <- catStr

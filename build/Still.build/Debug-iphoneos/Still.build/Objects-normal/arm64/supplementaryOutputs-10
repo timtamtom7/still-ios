@@ -1,0 +1,30 @@
+{
+  "/Users/mauriello/Dev/still-ios/Still/Utilities/Typography.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/Typography.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/Typography.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/Typography.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/Typography.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/Typography.swiftdeps"
+  },
+  "/Users/mauriello/Dev/still-ios/Still/Views/Components/TypewriterText.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/TypewriterText.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/TypewriterText.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/TypewriterText.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/TypewriterText.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/TypewriterText.swiftdeps"
+  },
+  "/Users/mauriello/Dev/still-ios/Still/Views/Components/WeekComparisonView.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/WeekComparisonView.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/WeekComparisonView.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/WeekComparisonView.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/WeekComparisonView.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/WeekComparisonView.swiftdeps"
+  },
+  "/Users/mauriello/Dev/still-ios/Still/Views/SubscriptionView.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/SubscriptionView.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/SubscriptionView.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/SubscriptionView.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/SubscriptionView.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/SubscriptionView.swiftdeps"
+  }
+}

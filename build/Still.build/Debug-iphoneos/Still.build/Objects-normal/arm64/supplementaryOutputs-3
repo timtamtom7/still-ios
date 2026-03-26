@@ -1,0 +1,30 @@
+{
+  "/Users/mauriello/Dev/still-ios/Still/Services/CloudKitService.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/CloudKitService.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/CloudKitService.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/CloudKitService.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/CloudKitService.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/CloudKitService.swiftdeps"
+  },
+  "/Users/mauriello/Dev/still-ios/Still/ViewModels/ArchiveViewModel.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/ArchiveViewModel.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/ArchiveViewModel.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/ArchiveViewModel.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/ArchiveViewModel.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/ArchiveViewModel.swiftdeps"
+  },
+  "/Users/mauriello/Dev/still-ios/Still/Views/ArchiveView.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/ArchiveView.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/ArchiveView.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/ArchiveView.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/ArchiveView.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/ArchiveView.swiftdeps"
+  },
+  "/Users/mauriello/Dev/still-ios/Still/Views/Components/BreathingOrb.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/BreathingOrb.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/BreathingOrb.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/BreathingOrb.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/BreathingOrb.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/BreathingOrb.swiftdeps"
+  }
+}

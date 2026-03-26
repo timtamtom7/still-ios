@@ -1,0 +1,30 @@
+{
+  "/Users/mauriello/Dev/still-ios/Still/Services/RetentionService.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/RetentionService.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/RetentionService.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/RetentionService.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/RetentionService.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/RetentionService.swiftdeps"
+  },
+  "/Users/mauriello/Dev/still-ios/Still/ViewModels/RitualViewModel.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/RitualViewModel.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/RitualViewModel.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/RitualViewModel.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/RitualViewModel.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/RitualViewModel.swiftdeps"
+  },
+  "/Users/mauriello/Dev/still-ios/Still/Views/Components/ReflectionInput.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/ReflectionInput.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/ReflectionInput.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/ReflectionInput.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/ReflectionInput.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/ReflectionInput.swiftdeps"
+  },
+  "/Users/mauriello/Dev/still-ios/Still/Views/RitualView.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/RitualView.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/RitualView.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/RitualView.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/RitualView.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/RitualView.swiftdeps"
+  }
+}

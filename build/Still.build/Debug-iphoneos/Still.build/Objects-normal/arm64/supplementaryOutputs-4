@@ -1,0 +1,30 @@
+{
+  "/Users/mauriello/Dev/still-ios/Still/Services/DatabaseService.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/DatabaseService.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/DatabaseService.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/DatabaseService.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/DatabaseService.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/DatabaseService.swiftdeps"
+  },
+  "/Users/mauriello/Dev/still-ios/Still/Services/HapticManager.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/HapticManager.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/HapticManager.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/HapticManager.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/HapticManager.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/HapticManager.swiftdeps"
+  },
+  "/Users/mauriello/Dev/still-ios/Still/Services/LegacyService.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/LegacyService.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/LegacyService.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/LegacyService.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/LegacyService.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/LegacyService.swiftdeps"
+  },
+  "/Users/mauriello/Dev/still-ios/Still/Utilities/Colors.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/Colors.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/Colors.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/Colors.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/Colors.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/Colors.swiftdeps"
+  }
+}

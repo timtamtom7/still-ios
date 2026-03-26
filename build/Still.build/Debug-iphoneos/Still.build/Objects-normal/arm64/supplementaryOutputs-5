@@ -1,0 +1,30 @@
+{
+  "/Users/mauriello/Dev/still-ios/Still/Models/Question.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/Question.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/Question.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/Question.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/Question.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/Question.swiftdeps"
+  },
+  "/Users/mauriello/Dev/still-ios/Still/Views/Components/MemoryLaneCard.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/MemoryLaneCard.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/MemoryLaneCard.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/MemoryLaneCard.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/MemoryLaneCard.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/MemoryLaneCard.swiftdeps"
+  },
+  "/Users/mauriello/Dev/still-ios/Still/Views/Components/NudgeBanner.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/NudgeBanner.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/NudgeBanner.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/NudgeBanner.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/NudgeBanner.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/NudgeBanner.swiftdeps"
+  },
+  "/Users/mauriello/Dev/still-ios/Still/Views/LegacyView.swift" : {
+    "const-values" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/LegacyView.swiftconstvalues",
+    "dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/LegacyView.d",
+    "diagnostics" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/LegacyView.dia",
+    "object" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/LegacyView.o",
+    "swift-dependencies" : "/Users/mauriello/Dev/still-ios/build/Still.build/Debug-iphoneos/Still.build/Objects-normal/arm64/LegacyView.swiftdeps"
+  }
+}
