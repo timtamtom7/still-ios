@@ -89,7 +89,7 @@ final class RitualViewModel: ObservableObject {
         }
 
         if !isEvening {
-            if db.getReflections(for: Calendar.current.date(byAdding: .day, value: -1, to: today)!).isEmpty == false {
+            if db.getReflections(for: Calendar.current.date(byAdding: .day, value: -1, to: today) ?? today).isEmpty == false {
                 showNudge = true
                 nudgeMessage = "Still held yesterday's question for you"
             }
