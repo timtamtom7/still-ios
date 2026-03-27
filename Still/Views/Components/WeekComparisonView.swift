@@ -102,6 +102,8 @@ struct WeekComparisonView: View {
         }
         .padding(20)
         .background(AppColors.surface)
-        .cornerRadius(16)
+        .cornerRadius(Theme.cornerRadiusCard)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Week comparison: \(thisWeekCount) reflections this week, \(lastWeekCount) last week. \(differenceText). \(momentumScore)")
     }
 }

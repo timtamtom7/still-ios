@@ -19,8 +19,11 @@ struct AmbientSoundPicker: View {
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
                 .background(AppColors.surface)
-                .cornerRadius(16)
+                .cornerRadius(Theme.cornerRadiusCard)
             }
+            .accessibilityLabel("Ambient sound picker")
+            .accessibilityValue(soundManager.currentSound.rawValue)
+            .accessibilityHint("Opens a menu to select ambient sounds or silence.")
 
             if showPicker {
                 VStack(spacing: 4) {
@@ -51,10 +54,12 @@ struct AmbientSoundPicker: View {
                             .padding(.horizontal, 12)
                             .padding(.vertical, 8)
                         }
+                        .accessibilityLabel(sound.rawValue)
+                        .accessibilityAddTraits(soundManager.currentSound == sound ? .isSelected : [])
                         .background(AppColors.surface)
                     }
                 }
-                .cornerRadius(12)
+                .cornerRadius(Theme.cornerRadiusSmall)
                 .padding(.top, 8)
                 .transition(.opacity.combined(with: .move(edge: .top)))
             }

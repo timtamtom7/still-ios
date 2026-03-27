@@ -37,6 +37,8 @@ struct ArchiveView: View {
                             .font(.system(size: 16))
                             .foregroundColor(AppColors.textSecondary)
                     }
+                    .accessibilityLabel(isSearching ? "Close search" : "Search reflections")
+                    .accessibilityHint(isSearching ? "Closes the search bar." : "Opens the search bar to filter reflections.")
                 }
             }
             .sheet(item: $selectedReflection) { reflection in
@@ -140,6 +142,8 @@ struct BookLikeWeekSection: View {
             }
             .padding(.horizontal, 24)
             .padding(.vertical, 12)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("\(group.title), \(group.reflections.count) reflections")
 
             // Cards arranged like pages
             ScrollView(.horizontal, showsIndicators: false) {
@@ -199,7 +203,7 @@ struct ArchiveReflectionCard: View {
         .padding(16)
         .frame(width: 200, height: 180)
         .background(
-            RoundedRectangle(cornerRadius: 8)
+            RoundedRectangle(cornerRadius: Theme.cornerRadiusTiny)
                 .fill(AppColors.surface)
                 .shadow(
                     color: Color.black.opacity(0.2),
@@ -209,7 +213,7 @@ struct ArchiveReflectionCard: View {
                 )
         )
         .overlay(
-            RoundedRectangle(cornerRadius: 8)
+            RoundedRectangle(cornerRadius: Theme.cornerRadiusTiny)
                 .stroke(AppColors.separator, lineWidth: 1)
         )
         .scaleEffect(isPressed ? 0.97 : 1.0)
@@ -217,6 +221,8 @@ struct ArchiveReflectionCard: View {
         .onLongPressGesture(minimumDuration: 0.1, pressing: { pressing in
             isPressed = pressing
         }, perform: {})
+        .accessibilityLabel("Reflection from \(reflection.formattedDate)")
+        .accessibilityHint("Tap to view the full reflection.")
     }
 }
 
@@ -255,7 +261,7 @@ struct MemoryLanePreview: View {
         }
         .padding(16)
         .background(AppColors.surface.opacity(0.5))
-        .cornerRadius(12)
+        .cornerRadius(Theme.cornerRadiusSmall)
         .onAppear {
             loadMemoryLane()
         }
@@ -291,10 +297,12 @@ struct MemoryPreviewCard: View {
         .padding(12)
         .frame(width: 160)
         .background(AppColors.surface)
-        .cornerRadius(8)
+        .cornerRadius(Theme.cornerRadiusTiny)
         .overlay(
-            RoundedRectangle(cornerRadius: 8)
+            RoundedRectangle(cornerRadius: Theme.cornerRadiusTiny)
                 .stroke(AppColors.amber.opacity(0.3), lineWidth: 1)
         )
+        .accessibilityLabel("\(label): \(reflection.question)")
+        .accessibilityHint("Tap to view this memory.")
     }
 }

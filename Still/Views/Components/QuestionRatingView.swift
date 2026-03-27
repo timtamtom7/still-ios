@@ -42,11 +42,13 @@ struct QuestionRatingView: View {
                                 )
 
                             Text(depthLabels[rating - 1])
-                                .font(.system(size: 10))
+                                .font(.system(size: 11))
                                 .foregroundColor(selectedRating == rating ? AppColors.amber : AppColors.textSecondary)
                         }
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel("\(depthLabels[rating - 1]), rating \(rating) of 5")
+                    .accessibilityAddTraits(selectedRating == rating ? .isSelected : [])
                 }
             }
 
@@ -58,7 +60,7 @@ struct QuestionRatingView: View {
         }
         .padding(24)
         .background(AppColors.surface)
-        .cornerRadius(16)
+        .cornerRadius(Theme.cornerRadiusCard)
         .opacity(animateIn ? 1 : 0)
         .offset(y: animateIn ? 0 : 20)
         .onAppear {

@@ -15,6 +15,8 @@ struct SearchBar: View {
                 .foregroundColor(AppColors.textPrimary)
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
+                .accessibilityLabel("Search")
+                .accessibilityHint("Enter keywords to search your reflections.")
 
             if !text.isEmpty {
                 Button {
@@ -24,11 +26,13 @@ struct SearchBar: View {
                         .font(.system(size: 16))
                         .foregroundColor(AppColors.textSecondary)
                 }
+                .accessibilityLabel("Clear search")
+                .accessibilityHint("Removes all search text.")
             }
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
         .background(AppColors.surface)
-        .cornerRadius(12)
+        .cornerRadius(Theme.cornerRadiusSmall)
     }
 }

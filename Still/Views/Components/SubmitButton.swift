@@ -15,7 +15,7 @@ struct SubmitButton: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 52)
                 .background(
-                    RoundedRectangle(cornerRadius: 24)
+                    RoundedRectangle(cornerRadius: Theme.cornerRadiusButton)
                         .fill(isEnabled ? AppColors.amberDeep : AppColors.amberDeep.opacity(0.3))
                 )
                 .shadow(

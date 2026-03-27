@@ -92,7 +92,7 @@ struct RitualView: View {
                 .padding(.horizontal, 12)
                 .padding(.vertical, 8)
                 .background(AppColors.surface)
-                .cornerRadius(8)
+                .cornerRadius(Theme.cornerRadiusTiny)
                 .padding(.horizontal, 32)
                 .transition(.opacity.combined(with: .move(edge: .top)))
             }
@@ -123,7 +123,7 @@ struct RitualView: View {
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
                         .background(AppColors.surface)
-                        .cornerRadius(16)
+                        .cornerRadius(Theme.cornerRadiusCard)
                     }
                 }
             }

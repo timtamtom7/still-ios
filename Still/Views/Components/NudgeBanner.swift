@@ -24,10 +24,12 @@ struct NudgeBanner: View {
                     .font(.system(size: 12))
                     .foregroundColor(AppColors.textSecondary)
             }
+            .accessibilityLabel("Dismiss banner")
+            .accessibilityHint("Dismisses the nudge message.")
         }
         .padding(16)
         .background(AppColors.surface)
-        .cornerRadius(12)
+        .cornerRadius(Theme.cornerRadiusSmall)
         .transition(.move(edge: .top).combined(with: .opacity))
     }
 }

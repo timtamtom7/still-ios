@@ -71,9 +71,12 @@ struct MemoryLaneCard: View {
                         .foregroundColor(AppColors.textSecondary)
                         .lineLimit(3)
                 }
+                .contentShape(Rectangle())
                 .onTapGesture {
                     onTap?(reflection)
                 }
+                .accessibilityLabel("View reflection from \(reflection.formattedDate)")
+                .accessibilityHint("Opens the full reflection.")
             } else {
                 Text("Nothing recorded")
                     .font(AppTypography.caption)
@@ -83,9 +86,9 @@ struct MemoryLaneCard: View {
         }
         .padding(16)
         .background(AppColors.surface)
-        .cornerRadius(12)
+        .cornerRadius(Theme.cornerRadiusSmall)
         .overlay(
-            RoundedRectangle(cornerRadius: 12)
+            RoundedRectangle(cornerRadius: Theme.cornerRadiusSmall)
                 .stroke(AppColors.amber.opacity(0.2), lineWidth: 1)
         )
     }

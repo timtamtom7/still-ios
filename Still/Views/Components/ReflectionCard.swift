@@ -23,9 +23,9 @@ struct ReflectionCard: View {
         }
         .padding(20)
         .background(AppColors.surface)
-        .cornerRadius(16)
+        .cornerRadius(Theme.cornerRadiusCard)
         .overlay(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: Theme.cornerRadiusCard)
                 .stroke(isHighlighted ? AppColors.amber : Color.clear, lineWidth: 1)
         )
         .animation(.easeInOut(duration: 0.2), value: isHighlighted)

@@ -182,9 +182,9 @@ struct SeasonalThemeCard: View {
         }
         .padding(20)
         .background(AppColors.surface)
-        .cornerRadius(16)
+        .cornerRadius(Theme.cornerRadiusCard)
         .overlay(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: Theme.cornerRadiusCard)
                 .stroke(AppColors.amber.opacity(0.2), lineWidth: 1)
         )
         .onAppear {
@@ -254,9 +254,9 @@ struct SundayPreviewCard: View {
         }
         .padding(20)
         .background(AppColors.surface)
-        .cornerRadius(16)
+        .cornerRadius(Theme.cornerRadiusCard)
         .overlay(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: Theme.cornerRadiusCard)
                 .stroke(AppColors.amber.opacity(0.2), lineWidth: 1)
         )
         .onAppear {
