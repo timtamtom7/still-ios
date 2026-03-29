@@ -51,6 +51,7 @@ struct CourseLibrary {
     static let courses: [MeditationCourse] = [
         // Beginner
         MeditationCourse(
+            id: UUID(),
             name: "Foundations of Calm",
             description: "Build a solid meditation practice from the ground up. Learn breath awareness and gentle focus techniques.",
             sessions: [
@@ -65,6 +66,7 @@ struct CourseLibrary {
         ),
 
         MeditationCourse(
+            id: UUID(),
             name: "Sleep Better",
             description: "A gentle 3-session series designed to ease you into restful sleep naturally.",
             sessions: [
@@ -80,6 +82,7 @@ struct CourseLibrary {
 
         // Intermediate
         MeditationCourse(
+            id: UUID(),
             name: "Focus & Flow",
             description: "Sharpen your attention and enter states of deep, effortless concentration.",
             sessions: [
@@ -95,6 +98,7 @@ struct CourseLibrary {
         ),
 
         MeditationCourse(
+            id: UUID(),
             name: "Anxiety Relief",
             description: "Practical tools to calm anxious patterns and find your ground in stressful moments.",
             sessions: [
@@ -111,6 +115,7 @@ struct CourseLibrary {
 
         // Advanced
         MeditationCourse(
+            id: UUID(),
             name: "Deep Self",
             description: "An immersive journey into non-dual awareness and the nature of consciousness itself.",
             sessions: [
@@ -129,7 +134,7 @@ struct CourseLibrary {
 
 // MARK: - CourseService
 
-final class CourseService {
+final class CourseService: @unchecked Sendable {
     static let shared = CourseService()
 
     private let userDefaults = UserDefaults.standard

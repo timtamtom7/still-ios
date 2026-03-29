@@ -215,9 +215,8 @@ struct TeacherDetailSheet: View {
             }
             .background(Theme.deepNavy)
             .navigationTitle(teacher.name)
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItemGroup(placement: .primaryAction) {
                     Button {
                         dismiss()
                     } label: {

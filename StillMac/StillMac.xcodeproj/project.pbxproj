@@ -7,18 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05B36939662BDBA62EA914CA /* AIMeditationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CB34BA0B369F142216918 /* AIMeditationService.swift */; };
 		0B2F469B5B88F484D126C0B3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B3626CF20AC80769BF441 /* SettingsView.swift */; };
+		19582B7277ACFBBF4901919A /* CourseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D905DBB26FA50AD21D9CED /* CourseService.swift */; };
 		1F84F5801FBEF6DEFACF2ECD /* MeditationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02574EC017829C4398452339 /* MeditationSession.swift */; };
+		284AC775EBF0542E8733BE79 /* BreathDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C16E097CC5389C7946A1EF /* BreathDetectionService.swift */; };
 		2FF71EA7296344757EAD638F /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E497F120AFF15E5E8CAF451 /* AppState.swift */; };
 		3CA3A577EF51068D7F928192 /* StillMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7156D79F2ED2FDD45A0C2A5F /* StillMacApp.swift */; };
 		49D5766C18225581667859F6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142549C1A7F48B86A55161A2 /* ContentView.swift */; };
 		5F499BB8810FED0C0AC50FB7 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B1979D7302190BFCEB8584 /* StatsView.swift */; };
+		669F81CA32D05326DC398EDF /* MeditationJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEB6D837CD5E388657F7635 /* MeditationJourneyView.swift */; };
 		97729FC2ADAEDB9EA4814D82 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576A58F03AECFCD10AADCD47 /* MenuBarView.swift */; };
 		A0DFFF43BCDC1ABC953097AD /* SessionLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656E5465F66EFD81E63DADC5 /* SessionLibraryView.swift */; };
 		A23892544ECB896D50C8B288 /* MeditationStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A4A868D1800CF0CC838BDE /* MeditationStats.swift */; };
 		A506FEFF93EF2043C33423DB /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDB616C063228FA23E5B2A6 /* Theme.swift */; };
 		AB3B3B72590A005E720DB61B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0937ADED473A50D2BE00F52B /* AppDelegate.swift */; };
+		BE6F3F561FF2C8E0173D3151 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACF0AA371970A0FB2AF243 /* CommunityView.swift */; };
 		BF1D948D981B7F3FBDB8B7B0 /* BreathingOrbMini.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A374A176643ED1B1F7CEE /* BreathingOrbMini.swift */; };
+		CA5B9570314465DEB7F71E87 /* TeachersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABFC6775052CDEE3992DFD8 /* TeachersView.swift */; };
 		EBF22770B64BD6BA57C8D715 /* MeditationPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E8E42BBF3C4CE7B8407AA3 /* MeditationPlayerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,12 +37,18 @@
 		1E2B8BE61B212ACB2B4165C1 /* StillMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StillMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		308CFF0A5A4F7FEA34AD0B9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3E497F120AFF15E5E8CAF451 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		55D905DBB26FA50AD21D9CED /* CourseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseService.swift; sourceTree = "<group>"; };
 		576A58F03AECFCD10AADCD47 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
+		58C16E097CC5389C7946A1EF /* BreathDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathDetectionService.swift; sourceTree = "<group>"; };
 		656E5465F66EFD81E63DADC5 /* SessionLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionLibraryView.swift; sourceTree = "<group>"; };
 		7156D79F2ED2FDD45A0C2A5F /* StillMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StillMacApp.swift; sourceTree = "<group>"; };
 		845B3626CF20AC80769BF441 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		93B1979D7302190BFCEB8584 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		A9ACF0AA371970A0FB2AF243 /* CommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
+		AABFC6775052CDEE3992DFD8 /* TeachersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersView.swift; sourceTree = "<group>"; };
+		BCEB6D837CD5E388657F7635 /* MeditationJourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationJourneyView.swift; sourceTree = "<group>"; };
 		BDDB616C063228FA23E5B2A6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		E96CB34BA0B369F142216918 /* AIMeditationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIMeditationService.swift; sourceTree = "<group>"; };
 		F9A4A868D1800CF0CC838BDE /* MeditationStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationStats.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,6 +73,16 @@
 				C02CF1676B440CF0BCC143ED /* Components */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		42FCE89F986DD4167CC5A6BB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E96CB34BA0B369F142216918 /* AIMeditationService.swift */,
+				58C16E097CC5389C7946A1EF /* BreathDetectionService.swift */,
+				55D905DBB26FA50AD21D9CED /* CourseService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		5AAFC4CDFD81AA8DE8262FD8 /* Products */ = {
@@ -89,6 +111,8 @@
 				7156D79F2ED2FDD45A0C2A5F /* StillMacApp.swift */,
 				BDDB616C063228FA23E5B2A6 /* Theme.swift */,
 				2400DA2537612D30990C6C62 /* Models */,
+				42FCE89F986DD4167CC5A6BB /* Services */,
+				CF57D5603F0BDEA617FBD456 /* Sources */,
 				28D3F402170B1556F05C46DE /* Views */,
 			);
 			path = StillMac;
@@ -100,6 +124,16 @@
 				137A374A176643ED1B1F7CEE /* BreathingOrbMini.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		CF57D5603F0BDEA617FBD456 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A9ACF0AA371970A0FB2AF243 /* CommunityView.swift */,
+				BCEB6D837CD5E388657F7635 /* MeditationJourneyView.swift */,
+				AABFC6775052CDEE3992DFD8 /* TeachersView.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,10 +190,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05B36939662BDBA62EA914CA /* AIMeditationService.swift in Sources */,
 				AB3B3B72590A005E720DB61B /* AppDelegate.swift in Sources */,
 				2FF71EA7296344757EAD638F /* AppState.swift in Sources */,
+				284AC775EBF0542E8733BE79 /* BreathDetectionService.swift in Sources */,
 				BF1D948D981B7F3FBDB8B7B0 /* BreathingOrbMini.swift in Sources */,
+				BE6F3F561FF2C8E0173D3151 /* CommunityView.swift in Sources */,
 				49D5766C18225581667859F6 /* ContentView.swift in Sources */,
+				19582B7277ACFBBF4901919A /* CourseService.swift in Sources */,
+				669F81CA32D05326DC398EDF /* MeditationJourneyView.swift in Sources */,
 				EBF22770B64BD6BA57C8D715 /* MeditationPlayerView.swift in Sources */,
 				1F84F5801FBEF6DEFACF2ECD /* MeditationSession.swift in Sources */,
 				A23892544ECB896D50C8B288 /* MeditationStats.swift in Sources */,
@@ -168,6 +207,7 @@
 				0B2F469B5B88F484D126C0B3 /* SettingsView.swift in Sources */,
 				5F499BB8810FED0C0AC50FB7 /* StatsView.swift in Sources */,
 				3CA3A577EF51068D7F928192 /* StillMacApp.swift in Sources */,
+				CA5B9570314465DEB7F71E87 /* TeachersView.swift in Sources */,
 				A506FEFF93EF2043C33423DB /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

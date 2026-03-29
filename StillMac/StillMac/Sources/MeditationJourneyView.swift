@@ -53,7 +53,7 @@ struct MeditationJourneyView: View {
             GridItem(.flexible()),
             GridItem(.flexible())
         ], spacing: 16) {
-            StatCard(
+            JourneyStatCard(
                 title: "Total Minutes",
                 value: "\(viewModel.totalMinutes)",
                 subtitle: "of meditation",
@@ -61,7 +61,7 @@ struct MeditationJourneyView: View {
                 color: Theme.calmBlue
             )
 
-            StatCard(
+            JourneyStatCard(
                 title: "Sessions",
                 value: "\(viewModel.totalSessions)",
                 subtitle: "completed",
@@ -69,7 +69,7 @@ struct MeditationJourneyView: View {
                 color: Theme.sage
             )
 
-            StatCard(
+            JourneyStatCard(
                 title: "Current Streak",
                 value: "\(viewModel.currentStreak)",
                 subtitle: "days",
@@ -77,7 +77,7 @@ struct MeditationJourneyView: View {
                 color: Theme.accent
             )
 
-            StatCard(
+            JourneyStatCard(
                 title: "Longest Streak",
                 value: "\(viewModel.longestStreak)",
                 subtitle: "days",
@@ -286,7 +286,7 @@ struct MeditationJourneyView: View {
 
 // MARK: - Supporting Views
 
-struct StatCard: View {
+struct JourneyStatCard: View {
     let title: String
     let value: String
     let subtitle: String
@@ -518,7 +518,7 @@ class MeditationJourneyViewModel: ObservableObject {
             } else if sessionDay == Calendar.current.date(byAdding: .day, value: -1, to: currentDate) {
                 streak += 1
                 currentDate = sessionDay
-            } else if sessionDay < Calendar.current.date(byAdding: .day, value: -1, to: currentDate) {
+            } else if let previousDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate), sessionDay < previousDate {
                 break
             }
         }

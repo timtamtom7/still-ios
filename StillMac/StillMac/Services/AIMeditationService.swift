@@ -1,6 +1,10 @@
 import Foundation
 import NaturalLanguage
 
+// MARK: - Sendable Conformance
+
+extension AIMeditationService: @unchecked Sendable {}
+
 /// Meditation goal/intent for AI recommendations
 enum MeditationGoal: String, CaseIterable, Identifiable {
     case relax = "Relax"

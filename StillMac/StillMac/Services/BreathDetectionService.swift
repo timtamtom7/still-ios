@@ -4,6 +4,10 @@ import AVFoundation
 import CoreImage
 import Combine
 
+// MARK: - Sendable Conformance
+
+extension BreathDetectionService: @unchecked Sendable {}
+
 /// Breath phase during the breathing cycle
 enum BreathPhase: String, CaseIterable {
     case inhale = "Inhale"
@@ -138,7 +142,7 @@ final class BreathDetectionService: NSObject, ObservableObject {
     private func setupVision() {
         bodyPoseRequest = VNDetectHumanBodyPoseRequest { [weak self] request, error in
             if let error = error {
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [weak self] in
                     self?.errorMessage = error.localizedDescription
                 }
                 return
@@ -149,7 +153,30 @@ final class BreathDetectionService: NSObject, ObservableObject {
                 return
             }
 
-            self?.processBodyPose(observation)
+            // Extract data on current thread before crossing isolation boundary
+            guard let chestPoint = try? observation.recognizedPoint(.root),
+                  let leftShoulder = try? observation.recognizedPoint(.leftShoulder),
+                  let rightShoulder = try? observation.recognizedPoint(.rightShoulder) else {
+                return
+            }
+
+            let chestY = chestPoint.location.y
+            let leftShoulderY = leftShoulder.location.y
+            let rightShoulderY = rightShoulder.location.y
+            let chestConf = chestPoint.confidence
+            let leftShoulderConf = leftShoulder.confidence
+            let rightShoulderConf = rightShoulder.confidence
+
+            DispatchQueue.main.async { [weak self] in
+                self?.processBreathData(
+                    chestY: chestY,
+                    leftShoulderY: leftShoulderY,
+                    rightShoulderY: rightShoulderY,
+                    chestConf: chestConf,
+                    leftShoulderConf: leftShoulderConf,
+                    rightShoulderConf: rightShoulderConf
+                )
+            }
         }
     }
 
@@ -194,55 +221,47 @@ final class BreathDetectionService: NSObject, ObservableObject {
         }
     }
 
-    // MARK: - Pose Processing
+    // MARK: - Breath Data Processing
 
-    private func processBodyPose(_ observation: VNHumanBodyPoseObservation) {
-        do {
-            // Get key points we need for breathing detection
-            let chestPoint = try observation.recognizedPoint(.center)
-            let leftShoulder = try observation.recognizedPoint(.leftShoulder)
-            let rightShoulder = try observation.recognizedPoint(.rightShoulder)
+    private func processBreathData(
+        chestY: CGFloat,
+        leftShoulderY: CGFloat,
+        rightShoulderY: CGFloat,
+        chestConf: Float,
+        leftShoulderConf: Float,
+        rightShoulderConf: Float
+    ) {
+        // Calculate shoulder average
+        let shoulderAvgY = (leftShoulderY + rightShoulderY) / 2
 
-            // Calculate chest center Y position (lower Y = higher on screen = inhale)
-            let chestY = chestPoint.location.y
-
-            // Calculate shoulder average
-            let shoulderAvgY = (leftShoulder.location.y + rightShoulder.location.y) / 2
-
-            // Only process if confidence is high enough
-            let minConfidence: Float = 0.3
-            guard chestPoint.confidence > minConfidence,
-                  leftShoulder.confidence > minConfidence,
-                  rightShoulder.confidence > minConfidence else {
-                return
-            }
-
-            // Record positions
-            recordPosition(chestY: chestY, shoulderY: shoulderAvgY)
-
-            // Detect breathing phase
-            let phase = detectBreathPhase(chestY: chestY)
-
-            // Calculate breath rate
-            let breathRate = calculateBreathRate()
-
-            // Calculate confidence based on position stability
-            let confidence = calculateConfidence()
-
-            let newState = BreathState(
-                phase: phase,
-                confidence: confidence,
-                breathRate: breathRate,
-                chestVertical位移: calculateMovementMagnitude()
-            )
-
-            DispatchQueue.main.async {
-                self.breathState = newState
-            }
-
-        } catch {
-            // Silently handle - pose detection can fail momentarily
+        // Only process if confidence is high enough
+        let minConfidence: Float = 0.3
+        guard chestConf > minConfidence,
+              leftShoulderConf > minConfidence,
+              rightShoulderConf > minConfidence else {
+            return
         }
+
+        // Record positions
+        recordPosition(chestY: chestY, shoulderY: shoulderAvgY)
+
+        // Detect breathing phase
+        let phase = detectBreathPhase(chestY: chestY)
+
+        // Calculate breath rate
+        let breathRate = calculateBreathRate()
+
+        // Calculate confidence based on position stability
+        let confidence = calculateConfidence()
+
+        let newState = BreathState(
+            phase: phase,
+            confidence: confidence,
+            breathRate: breathRate,
+            chestVertical位移: calculateMovementMagnitude()
+        )
+
+        self.breathState = newState
     }
 
     private func recordPosition(chestY: CGFloat, shoulderY: CGFloat) {
