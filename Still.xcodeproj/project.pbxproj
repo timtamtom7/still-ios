@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		012FD5C880702259F3AF7D9A /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F23B2211E47EDA5255E8A6 /* Typography.swift */; };
+		09E37830B7CCE38BE29F5DEC /* TeachersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BA8F865CC6A16EC662D30C /* TeachersView.swift */; };
 		155054B55E9C13778A29773F /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 91DAB4393EBDE4892D660B4E /* SQLite */; };
 		187419FD20BE929CF4BCC2C6 /* SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE968829B8362E88D8B147 /* SubscriptionView.swift */; };
 		1CACA9E3AC325631F6B498FD /* QuestionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F95C8C27B59F97D4FB68EA4 /* QuestionBank.swift */; };
 		1CF5212A3AF1674D6E7797EA /* StillApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CC99B5A1788C31E341EB8B /* StillApp.swift */; };
+		2102142696F8C3DA9EA4FFD6 /* APPSTORE.md in Resources */ = {isa = PBXBuildFile; fileRef = A22E125E3DC221C4DE5D0C20 /* APPSTORE.md */; };
 		214CB1967753BB4A291C0448 /* BreathDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BA9B193283BEFBC5FC7370 /* BreathDetectionService.swift */; };
 		24FAFF32DF2100CFE9216F76 /* BreathingOrb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8C7F0F7539F71C126D6DF /* BreathingOrb.swift */; };
 		289349B28999F899CEA14BFE /* CloudKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CFD861B29B8AAC15F709A /* CloudKitService.swift */; };
@@ -37,6 +39,7 @@
 		5BDE32CB4F6BBDF0C6C298D9 /* QuestionRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A43FC74BB8339D4F7A921A /* QuestionRatingView.swift */; };
 		5C670767ACF6024F3186CBEF /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A4445EB1C62980F189BF0E /* SoundManager.swift */; };
 		5DB871FCAA9832FEF163ACCE /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236F6916F781FB8C81EA5440 /* StatsView.swift */; };
+		5E671A6F34874F78724539A3 /* CourseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03487DF5870D93FD1DA5C428 /* CourseService.swift */; };
 		5F62DE9B1BE0C02C3EEDA795 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F23B2211E47EDA5255E8A6 /* Typography.swift */; };
 		603A70F2DCDC509C1B592AA8 /* ReflectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC98260E1406EE349243FF53 /* ReflectionInput.swift */; };
 		60AF56AA7D79DA1EA81FAED1 /* project.yml in Resources */ = {isa = PBXBuildFile; fileRef = 5F0681D2F708F55E1EBB5EC0 /* project.yml */; };
@@ -49,6 +52,8 @@
 		75898775F4BDFB1E7BD944BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B40BF53A30B089509254FB7 /* Assets.xcassets */; };
 		7725626899C71CE8CA5D2F26 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA70E3DBDA3F077F00C0346 /* AIService.swift */; };
 		7B32B8B9FE89E3ABB4019A37 /* StillMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B289AD833F2578EC715AB32 /* StillMacApp.swift */; };
+		8472BC8224E70DDD4B9FC5C9 /* LAUNCH_CHECKLIST.md in Resources */ = {isa = PBXBuildFile; fileRef = F6F8D2AF7CF858E69A623677 /* LAUNCH_CHECKLIST.md */; };
+		858CB95FFB180C8130983FD0 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3DB5B69A0C48692BD642EE /* CommunityView.swift */; };
 		89BA3E633DC9B6F949298D7F /* AmbientSoundPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50892F7D48038A7AFE29C66 /* AmbientSoundPicker.swift */; };
 		8A44021891C3B6631A427C30 /* StillEmptyIllustration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CB04B6F80596E82E4210E8 /* StillEmptyIllustration.swift */; };
 		8CB0D65A325DB76E7C6E9740 /* StillMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B48AC2D62014194318D685 /* StillMacApp.swift */; };
@@ -80,6 +85,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03487DF5870D93FD1DA5C428 /* CourseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseService.swift; sourceTree = "<group>"; };
 		04665B710D6CB28B710D6C2F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		0A91C2AE7BF4F8912923B3A2 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		16CC99B5A1788C31E341EB8B /* StillApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StillApp.swift; sourceTree = "<group>"; };
@@ -122,11 +128,14 @@
 		9AA70E3DBDA3F077F00C0346 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
 		A0C8C7F0F7539F71C126D6DF /* BreathingOrb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingOrb.swift; sourceTree = "<group>"; };
 		A1D92C68223378551F0D34EC /* AppleIntelligenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIntelligenceService.swift; sourceTree = "<group>"; };
+		A22E125E3DC221C4DE5D0C20 /* APPSTORE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = APPSTORE.md; sourceTree = "<group>"; };
+		A3BA8F865CC6A16EC662D30C /* TeachersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersView.swift; sourceTree = "<group>"; };
 		A4EA07AE56F766F843DF2670 /* SubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButton.swift; sourceTree = "<group>"; };
 		A549F1A35882E9809E5EC14B /* StillMac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = StillMac.xcodeproj; sourceTree = "<group>"; };
 		AA50037AA6620B89E48E2F79 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		B39E0C581BBDFEE14FE6D377 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B50892F7D48038A7AFE29C66 /* AmbientSoundPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientSoundPicker.swift; sourceTree = "<group>"; };
+		BD3DB5B69A0C48692BD642EE /* CommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
 		CAED40BD4E7A51AC3813069E /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
 		CB28BACDC642071D41F71043 /* StillWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StillWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBFE33E37BE0A3E4E8C449B5 /* AIMeditationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIMeditationService.swift; sourceTree = "<group>"; };
@@ -143,6 +152,7 @@
 		EEB1882CB058D2A7B1D15095 /* ReflectionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionCard.swift; sourceTree = "<group>"; };
 		EFB3D6623C7D7183B64BC77B /* WeekReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekReviewCard.swift; sourceTree = "<group>"; };
 		EFCFFA81B852C51648EC3B53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F6F8D2AF7CF858E69A623677 /* LAUNCH_CHECKLIST.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LAUNCH_CHECKLIST.md; sourceTree = "<group>"; };
 		F7B8ACE06C13B57472C6B2C4 /* WeekReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekReviewViewModel.swift; sourceTree = "<group>"; };
 		FC98260E1406EE349243FF53 /* ReflectionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionInput.swift; sourceTree = "<group>"; };
 		FFCA2FE68A29C76B49D67E49 /* ArchiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewModel.swift; sourceTree = "<group>"; };
@@ -234,8 +244,10 @@
 		3AF534B90762AE6F32889569 /* StillMac */ = {
 			isa = PBXGroup;
 			children = (
+				E399E4B5FAEFC839577FD391 /* Marketing */,
 				F073A8C483024F3A3C2C21F0 /* StillMac */,
 				166C37547F124FEFDDAC5F90 /* Views */,
+				F6F8D2AF7CF858E69A623677 /* LAUNCH_CHECKLIST.md */,
 				5F0681D2F708F55E1EBB5EC0 /* project.yml */,
 				A549F1A35882E9809E5EC14B /* StillMac.xcodeproj */,
 				58B48AC2D62014194318D685 /* StillMacApp.swift */,
@@ -302,6 +314,7 @@
 			children = (
 				CBFE33E37BE0A3E4E8C449B5 /* AIMeditationService.swift */,
 				87BA9B193283BEFBC5FC7370 /* BreathDetectionService.swift */,
+				03487DF5870D93FD1DA5C428 /* CourseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -386,9 +399,19 @@
 		DF84077891F01E0FED5F6B19 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				BD3DB5B69A0C48692BD642EE /* CommunityView.swift */,
 				CDCDD95525615C01CD13D70E /* MeditationJourneyView.swift */,
+				A3BA8F865CC6A16EC662D30C /* TeachersView.swift */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		E399E4B5FAEFC839577FD391 /* Marketing */ = {
+			isa = PBXGroup;
+			children = (
+				A22E125E3DC221C4DE5D0C20 /* APPSTORE.md */,
+			);
+			path = Marketing;
 			sourceTree = "<group>";
 		};
 		F073A8C483024F3A3C2C21F0 /* StillMac */ = {
@@ -519,6 +542,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2102142696F8C3DA9EA4FFD6 /* APPSTORE.md in Resources */,
+				8472BC8224E70DDD4B9FC5C9 /* LAUNCH_CHECKLIST.md in Resources */,
 				61D1AD526A0A9441CC0F76D2 /* StillMac.xcodeproj in Resources */,
 				60AF56AA7D79DA1EA81FAED1 /* project.yml in Resources */,
 			);
@@ -538,7 +563,9 @@
 				214CB1967753BB4A291C0448 /* BreathDetectionService.swift in Sources */,
 				653C0EBE2A926AB3B3335483 /* BreathingOrbMini.swift in Sources */,
 				46E8A09F5686778F951C9C6F /* Colors.swift in Sources */,
+				858CB95FFB180C8130983FD0 /* CommunityView.swift in Sources */,
 				A2577BA1D9361B0A1EFCF30E /* ContentView.swift in Sources */,
+				5E671A6F34874F78724539A3 /* CourseService.swift in Sources */,
 				D5FCCCF6339E09B3568D1112 /* DatabaseService.swift in Sources */,
 				2A573DF6B3D6B5A1B9DAF1B3 /* MeditationJourneyView.swift in Sources */,
 				DDA95AF5909E9AB30E1B7D77 /* MeditationPlayerView.swift in Sources */,
@@ -553,6 +580,7 @@
 				5DB871FCAA9832FEF163ACCE /* StatsView.swift in Sources */,
 				8CB0D65A325DB76E7C6E9740 /* StillMacApp.swift in Sources */,
 				7B32B8B9FE89E3ABB4019A37 /* StillMacApp.swift in Sources */,
+				09E37830B7CCE38BE29F5DEC /* TeachersView.swift in Sources */,
 				C87336654305E1C889CC092D /* Theme.swift in Sources */,
 				012FD5C880702259F3AF7D9A /* Typography.swift in Sources */,
 			);
