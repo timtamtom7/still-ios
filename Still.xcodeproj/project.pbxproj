@@ -56,7 +56,6 @@
 		858CB95FFB180C8130983FD0 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3DB5B69A0C48692BD642EE /* CommunityView.swift */; };
 		89BA3E633DC9B6F949298D7F /* AmbientSoundPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50892F7D48038A7AFE29C66 /* AmbientSoundPicker.swift */; };
 		8A44021891C3B6631A427C30 /* StillEmptyIllustration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CB04B6F80596E82E4210E8 /* StillEmptyIllustration.swift */; };
-		8CB0D65A325DB76E7C6E9740 /* StillMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B48AC2D62014194318D685 /* StillMacApp.swift */; };
 		8D002BB600007BF032E2799B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C2AE7BF4F8912923B3A2 /* Colors.swift */; };
 		8ED9C54BB1FA16E07F5E3341 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCFFA81B852C51648EC3B53 /* AppDelegate.swift */; };
 		A2577BA1D9361B0A1EFCF30E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2BAF8D5E1AB1F7A5156EFF /* ContentView.swift */; };
@@ -103,7 +102,6 @@
 		451A7C0649B3AEB5EDA552F4 /* ArchiveRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveRow.swift; sourceTree = "<group>"; };
 		53E1558BFE3DC76B94B5C655 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		58100D0ACE6830A5B85EE5B6 /* StillR11Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StillR11Service.swift; sourceTree = "<group>"; };
-		58B48AC2D62014194318D685 /* StillMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StillMacApp.swift; sourceTree = "<group>"; };
 		5A4588DE9DE952B91CE99B3D /* MeditationPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationPlayerView.swift; sourceTree = "<group>"; };
 		5B40BF53A30B089509254FB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F0681D2F708F55E1EBB5EC0 /* project.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = project.yml; sourceTree = "<group>"; };
@@ -250,7 +248,6 @@
 				F6F8D2AF7CF858E69A623677 /* LAUNCH_CHECKLIST.md */,
 				5F0681D2F708F55E1EBB5EC0 /* project.yml */,
 				A549F1A35882E9809E5EC14B /* StillMac.xcodeproj */,
-				58B48AC2D62014194318D685 /* StillMacApp.swift */,
 			);
 			path = StillMac;
 			sourceTree = "<group>";
@@ -578,7 +575,6 @@
 				D47848603EAD7D7556239D36 /* SessionLibraryView.swift in Sources */,
 				E315D4B902B162B7EC1271B3 /* SettingsView.swift in Sources */,
 				5DB871FCAA9832FEF163ACCE /* StatsView.swift in Sources */,
-				8CB0D65A325DB76E7C6E9740 /* StillMacApp.swift in Sources */,
 				7B32B8B9FE89E3ABB4019A37 /* StillMacApp.swift in Sources */,
 				09E37830B7CCE38BE29F5DEC /* TeachersView.swift in Sources */,
 				C87336654305E1C889CC092D /* Theme.swift in Sources */,
@@ -756,7 +752,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.still.app.macos;
 				PRODUCT_NAME = Still;
 				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
 			};
 			name = Debug;
 		};
@@ -802,7 +798,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.still.app.macos;
 				PRODUCT_NAME = Still;
 				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
 			};
 			name = Release;
 		};

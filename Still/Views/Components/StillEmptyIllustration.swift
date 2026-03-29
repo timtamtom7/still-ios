@@ -4,13 +4,13 @@ import SwiftUI
 struct StillEmptyIllustration: View {
     let size: CGFloat
 
-    private let background = Color(hex: "0D0B09")
-    private let surface = Color(hex: "1A1714")
-    private let amber = Color(hex: "E8A46A")
-    private let amberGlow = Color(hex: "F4C594")
-    private let amberDeep = Color(hex: "C47D3E")
-    private let textSecondary = Color(hex: "9B9385")
-    private let separator = Color(hex: "2A2520")
+    private let background = Color(hexString: "0D0B09")
+    private let surface = Color(hexString: "1A1714")
+    private let amber = Color(hexString: "E8A46A")
+    private let amberGlow = Color(hexString: "F4C594")
+    private let amberDeep = Color(hexString: "C47D3E")
+    private let textSecondary = Color(hexString: "9B9385")
+    private let separator = Color(hexString: "2A2520")
 
     var body: some View {
         Canvas { context, canvasSize in
@@ -160,7 +160,7 @@ struct StillEmptyIllustration: View {
 
 #Preview {
     ZStack {
-        Color(hex: "0D0B09").ignoresSafeArea()
+        Color(hexString: "0D0B09").ignoresSafeArea()
         StillEmptyIllustration(size: 220)
     }
 }

@@ -52,6 +52,7 @@ targets:
       - path: StillMac
         excludes:
           - "**/.DS_Store"
+          - "StillMacApp.swift"
       - path: Still/Models
         excludes:
           - "**/.DS_Store"
@@ -72,7 +73,7 @@ targets:
         CODE_SIGN_IDENTITY: "-"
         CODE_SIGN_STYLE: Manual
         PRODUCT_NAME: Still
-        SWIFT_EMIT_LOC_STRINGS: "YES"
+        SWIFT_EMIT_LOC_STRINGS: "NO"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         ENABLE_HARDENED_RUNTIME: "YES"

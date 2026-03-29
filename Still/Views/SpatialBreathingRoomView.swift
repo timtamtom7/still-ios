@@ -26,13 +26,13 @@ struct SpatialBreathingRoomView: View {
         var gradientColors: [Color] {
             switch self {
             case .ocean:
-                return [Color(hex: "0A1628"), Color(hex: "1A3A5C"), Color(hex: "2A5A8C")]
+                return [Color(hexString: "0A1628"), Color(hexString: "1A3A5C"), Color(hexString: "2A5A8C")]
             case .forest:
-                return [Color(hex: "0A2818"), Color(hex: "1A4A2C"), Color(hex: "2A6A40")]
+                return [Color(hexString: "0A2818"), Color(hexString: "1A4A2C"), Color(hexString: "2A6A40")]
             case .mountain:
-                return [Color(hex: "1A1A28"), Color(hex: "2A2A4C"), Color(hex: "3A3A70")]
+                return [Color(hexString: "1A1A28"), Color(hexString: "2A2A4C"), Color(hexString: "3A3A70")]
             case .space:
-                return [Color(hex: "050510"), Color(hex: "0A0A20"), Color(hex: "151540")]
+                return [Color(hexString: "050510"), Color(hexString: "0A0A20"), Color(hexString: "151540")]
             }
         }
     }
