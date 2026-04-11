@@ -3,8 +3,9 @@ import NaturalLanguage
 
 /// AI-powered question personalization service
 /// Uses on-device NLP to analyze reflection patterns and suggest relevant questions
+@MainActor
 final class AIService {
-    static nonisolated(unsafe) let shared = AIService()
+    static let shared = AIService()
 
     private init() {}
 

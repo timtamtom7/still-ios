@@ -1,8 +1,9 @@
 import Foundation
 
 /// Service for generating legacy documents from reflections
+@MainActor
 final class LegacyService {
-    static nonisolated(unsafe) let shared = LegacyService()
+    static let shared = LegacyService()
 
     private init() {}
 

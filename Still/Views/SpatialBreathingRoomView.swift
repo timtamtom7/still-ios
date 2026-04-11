@@ -1,5 +1,6 @@
 import SwiftUI
 import UIKit
+import Combine
 
 /// R14: Vision Pro spatial breathing room
 /// Immersive breathing environments
@@ -9,6 +10,8 @@ struct SpatialBreathingRoomView: View {
     @State private var currentPhase: BreathPhase = .inhale
     @State private var cycleCount = 0
     @State private var sessionTimer: Timer? = nil
+    @State private var phaseStartTime: Date = Date()
+    @State private var cancellables = Set<AnyCancellable>()
 
     enum BreathingEnvironment: String, CaseIterable {
         case ocean = "Ocean"
@@ -89,6 +92,13 @@ struct SpatialBreathingRoomView: View {
                 controlButtons
             }
             .padding()
+        }
+        .onReceive(Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()) { _ in
+            guard isSessionActive else { return }
+            let elapsed = Date().timeIntervalSince(phaseStartTime)
+            if elapsed >= currentPhase.duration {
+                advancePhase()
+            }
         }
     }
 
@@ -226,35 +236,7 @@ struct SpatialBreathingRoomView: View {
         isSessionActive = true
         cycleCount = 1
         currentPhase = .inhale
-
-        sessionTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] timer in
-            guard let self = self else {
-                timer.invalidate()
-                return
-            }
-            if !self.isSessionActive {
-                timer.invalidate()
-                return
-            }
-
-            // Phase transition
-            DispatchQueue.main.asyncAfter(deadline: .now() + self.currentPhase.duration) {
-                guard self.isSessionActive else { return }
-                withAnimation {
-                    switch self.currentPhase {
-                    case .inhale:
-                        self.currentPhase = .hold
-                    case .hold:
-                        self.currentPhase = .exhale
-                    case .exhale:
-                        self.currentPhase = .rest
-                    case .rest:
-                        self.currentPhase = .inhale
-                        self.cycleCount += 1
-                    }
-                }
-            }
-        }
+        phaseStartTime = Date()
     }
 
     private func stopSession() {
@@ -262,5 +244,22 @@ struct SpatialBreathingRoomView: View {
         currentPhase = .inhale
         sessionTimer?.invalidate()
         sessionTimer = nil
+    }
+
+    private func advancePhase() {
+        withAnimation {
+            switch currentPhase {
+            case .inhale:
+                currentPhase = .hold
+            case .hold:
+                currentPhase = .exhale
+            case .exhale:
+                currentPhase = .rest
+            case .rest:
+                currentPhase = .inhale
+                cycleCount += 1
+            }
+        }
+        phaseStartTime = Date()
     }
 }

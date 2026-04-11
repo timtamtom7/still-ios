@@ -15,6 +15,7 @@ struct WeekGroup: Identifiable {
     }
 }
 
+@MainActor
 final class ArchiveViewModel: ObservableObject {
     @Published var reflections: [Reflection] = []
     @Published var searchQuery: String = ""
