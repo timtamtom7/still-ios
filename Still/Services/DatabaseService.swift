@@ -1,10 +1,11 @@
 import Foundation
 import SQLite
 
+@MainActor
 final class DatabaseService {
-    static nonisolated(unsafe) let shared = DatabaseService()
+    static let shared = DatabaseService()
 
-    private var db: Connection?
+    private let db: Connection?
 
     private let reflections = Table("reflections")
     private let id = Expression<String>("id")
@@ -26,18 +27,10 @@ final class DatabaseService {
     private let settingValue = Expression<String>("value")
 
     private init() {
-        setupDatabase()
-    }
-
-    private func setupDatabase() {
-        do {
-            let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                .appendingPathComponent("still.sqlite3").path
-            db = try Connection(path)
-            try createTables()
-        } catch {
-            print("Database setup failed: \(error)")
-        }
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("still.sqlite3").path
+        db = try? Connection(path)
+        try? createTables()
     }
 
     private func createTables() throws {
@@ -62,28 +55,6 @@ final class DatabaseService {
             t.column(settingKey, primaryKey: true)
             t.column(settingValue)
         })
-
-        // Migrate old reflections that don't have new columns
-        migrateOldReflections()
-    }
-
-    private func migrateOldReflections() {
-        do {
-            guard let db = db else { return }
-            let count = try db.scalar(reflections.filter(questionRating == nil).count)
-            if count > 0 {
-                for row in try db.prepare(reflections.filter(questionRating == nil)) {
-                    let update = reflections.filter(id == row[id])
-                    try db.run(update.update(
-                        questionRating <- nil,
-                        soundUsed <- nil,
-                        questionCategory <- nil
-                    ))
-                }
-            }
-        } catch {
-            print("Migration note: \(error)")
-        }
     }
 
     // MARK: - Reflections
@@ -158,7 +129,7 @@ final class DatabaseService {
         guard let db = db else { return [] }
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: targetDate)
-        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+        guard let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay) else { return [] }
         let startTs = startOfDay.timeIntervalSince1970
         let endTs = endOfDay.timeIntervalSince1970
 
@@ -223,7 +194,7 @@ final class DatabaseService {
         let calendar = Calendar.current
         guard let oneYearAgo = calendar.date(byAdding: .year, value: -1, to: Date()) else { return nil }
         let startOfDay = calendar.startOfDay(for: oneYearAgo)
-        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+        guard let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay) else { return nil }
         let startTs = startOfDay.timeIntervalSince1970
         let endTs = endOfDay.timeIntervalSince1970
 
@@ -245,7 +216,7 @@ final class DatabaseService {
         let calendar = Calendar.current
         guard let oneMonthAgo = calendar.date(byAdding: .month, value: -1, to: Date()) else { return nil }
         let startOfDay = calendar.startOfDay(for: oneMonthAgo)
-        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+        guard let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay) else { return nil }
         let startTs = startOfDay.timeIntervalSince1970
         let endTs = endOfDay.timeIntervalSince1970
 

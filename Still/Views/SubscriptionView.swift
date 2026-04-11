@@ -234,6 +234,7 @@ struct SubscriptionView: View {
                         .font(AppTypography.caption)
                         .foregroundColor(AppColors.textSecondary)
                 }
+                .accessibilityLabel("Manage Subscription")
             } else {
                 Button {
                     purchasePro()
@@ -255,6 +256,7 @@ struct SubscriptionView: View {
                     .cornerRadius(24)
                 }
                 .disabled(selectedProduct == nil || isPurchasing)
+                .accessibilityLabel(selectedProduct == nil ? "Select a plan to continue" : "Start Pro subscription")
 
                 Button {
                     restorePurchases()
@@ -263,6 +265,7 @@ struct SubscriptionView: View {
                         .font(AppTypography.caption)
                         .foregroundColor(AppColors.textSecondary)
                 }
+                .accessibilityLabel("Restore Purchases")
             }
 
             Text("Cancel anytime. Auto-renews unless turned off 24h before period ends.")

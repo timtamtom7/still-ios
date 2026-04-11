@@ -23,9 +23,9 @@ struct ReflectionCard: View {
         }
         .padding(20)
         .background(AppColors.surface)
-        .cornerRadius(16)
+        .cornerRadius(AppRadius.card)
         .overlay(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: AppRadius.card)
                 .stroke(isHighlighted ? AppColors.amber : Color.clear, lineWidth: 1)
         )
         .animation(.easeInOut(duration: 0.2), value: isHighlighted)
@@ -35,5 +35,6 @@ struct ReflectionCard: View {
                 isHighlighted = false
             }
         }
+        .accessibilityHint("Double tap to view full reflection")
     }
 }

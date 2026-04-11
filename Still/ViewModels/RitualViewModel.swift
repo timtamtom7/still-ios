@@ -60,10 +60,9 @@ final class RitualViewModel: ObservableObject {
     }
 
     private func checkCloudKitStatus() {
-        cloudKit.checkAccountStatus { available in
-            DispatchQueue.main.async {
-                self.showOfflineBanner = !available && self.cloudKit.isEnabled
-            }
+        Task {
+            let available = await cloudKit.checkAccountStatus()
+            self.showOfflineBanner = !available && cloudKit.isEnabled
         }
     }
 
@@ -170,11 +169,11 @@ final class RitualViewModel: ObservableObject {
         do {
             try db.saveReflection(reflection)
             subscription.incrementWeeklyCount()
-            cloudKit.saveReflection(reflection) { success in
+
+            Task {
+                let success = await cloudKit.saveReflection(reflection)
                 if !success {
-                    DispatchQueue.main.async {
-                        self.showSaveError = true
-                    }
+                    self.showSaveError = true
                 }
             }
 

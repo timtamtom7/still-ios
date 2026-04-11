@@ -7,7 +7,7 @@ struct QuestionRatingView: View {
     @State private var selectedRating: Int?
     @State private var animateIn = false
 
-    private let depthLabels = ["Surface", "Getting there", "Deep", "Very deep", "Profound"]
+    private let depthLabels = ["Surface", "Exploring", "Deep", "Profound", "Transcendent"]
 
     var body: some View {
         VStack(spacing: 24) {
@@ -47,6 +47,8 @@ struct QuestionRatingView: View {
                         }
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel("Depth \(rating): \(depthLabels[rating - 1])")
+                    .accessibilityHint("Tap to rate this question as \(depthLabels[rating - 1])")
                 }
             }
 
@@ -58,7 +60,7 @@ struct QuestionRatingView: View {
         }
         .padding(24)
         .background(AppColors.surface)
-        .cornerRadius(16)
+        .cornerRadius(AppRadius.card)
         .opacity(animateIn ? 1 : 0)
         .offset(y: animateIn ? 0 : 20)
         .onAppear {

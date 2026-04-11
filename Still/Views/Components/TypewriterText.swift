@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import UIKit
 
 struct TypewriterText: View {
     let text: String
@@ -8,7 +9,6 @@ struct TypewriterText: View {
     let speed: Double // characters per second
 
     @State private var displayedText: String = ""
-    @State private var charIndex: Int = 0
     @State private var timer: AnyCancellable?
 
     var body: some View {
@@ -29,6 +29,14 @@ struct TypewriterText: View {
             displayedText = ""
             return
         }
+
+        // Respect Reduce Motion accessibility setting
+        if UIAccessibility.isReduceMotionEnabled {
+            displayedText = text
+            UIAccessibility.post(notification: .announcement, argument: "Question displayed")
+            return
+        }
+
         let interval = 1.0 / speed
         var count = 0
 
@@ -41,6 +49,7 @@ struct TypewriterText: View {
                     count += 1
                 } else {
                     timer?.cancel()
+                    UIAccessibility.post(notification: .announcement, argument: "Question complete")
                 }
             }
     }

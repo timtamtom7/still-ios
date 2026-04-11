@@ -27,7 +27,7 @@ struct ReflectionInput: View {
                     .frame(minHeight: 120)
                     .accessibilityLabel("Reflection text")
                     .accessibilityHint("Write your reflection here. \(characterLimit) characters maximum.")
-                    .onChange(of: text) { _, newValue in
+                    .onChange(of: text) { oldValue, newValue in
                         if newValue.count > characterLimit {
                             text = String(newValue.prefix(characterLimit))
                         }

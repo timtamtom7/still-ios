@@ -27,7 +27,7 @@ struct NudgeBanner: View {
         }
         .padding(16)
         .background(AppColors.surface)
-        .cornerRadius(12)
+        .cornerRadius(AppRadius.small)
         .transition(.move(edge: .top).combined(with: .opacity))
     }
 }

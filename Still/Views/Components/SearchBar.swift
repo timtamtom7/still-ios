@@ -15,6 +15,7 @@ struct SearchBar: View {
                 .foregroundColor(AppColors.textPrimary)
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
+                .accessibilityLabel(placeholder)
 
             if !text.isEmpty {
                 Button {
@@ -29,6 +30,6 @@ struct SearchBar: View {
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
         .background(AppColors.surface)
-        .cornerRadius(12)
+        .cornerRadius(AppRadius.small)
     }
 }

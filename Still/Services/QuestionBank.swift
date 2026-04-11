@@ -1,7 +1,8 @@
 import Foundation
 
+@MainActor
 final class QuestionBank {
-    static nonisolated(unsafe) let shared = QuestionBank()
+    static let shared = QuestionBank()
 
     private var allQuestions: [QuestionItem] = []
     private var usedQuestionIndices: Set<Int> = []

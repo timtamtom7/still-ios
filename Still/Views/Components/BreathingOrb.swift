@@ -90,6 +90,15 @@ struct BreathingOrb: View {
         }
     }
 
+    private var stateName: String {
+        switch state {
+        case .idle: return "Idle"
+        case .attentive: return "Ready"
+        case .recording: return "Recording"
+        case .complete: return "Complete"
+        }
+    }
+
     var body: some View {
         ZStack {
             Circle()
@@ -113,7 +122,7 @@ struct BreathingOrb: View {
         }
         .frame(width: resolvedSize.dimension, height: resolvedSize.dimension)
         .animation(.easeInOut(duration: 4).repeatForever(autoreverses: true), value: scale)
-        .accessibilityLabel("Breathing orb")
+        .accessibilityLabel("\(stateName): \(stateHint)")
         .accessibilityHint(stateHint)
     }
 }

@@ -24,11 +24,16 @@ final class AppleIntelligenceService: ObservableObject {
     }
 
     private func checkAvailability() {
-        #if canImport(AppleIntelligence)
-        isAppleIntelligenceAvailable = true
-        #else
-        isAppleIntelligenceAvailable = false
-        #endif
+        let osVersion = ProcessInfo.processInfo.operatingSystemVersion
+        if osVersion.majorVersion >= 18 {
+            #if canImport(AppleIntelligence)
+            isAppleIntelligenceAvailable = true
+            #else
+            isAppleIntelligenceAvailable = false
+            #endif
+        } else {
+            isAppleIntelligenceAvailable = false
+        }
     }
 
     /// R14: Generate breathing suggestion

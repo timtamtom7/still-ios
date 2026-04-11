@@ -11,6 +11,13 @@ enum AppColors {
     static let separator = Color(hex: "2A2520")
 }
 
+enum AppRadius {
+    static let button: CGFloat = 24
+    static let card: CGFloat = 16
+    static let small: CGFloat = 12
+    static let pill: CGFloat = 20
+}
+
 extension Color {
     init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)

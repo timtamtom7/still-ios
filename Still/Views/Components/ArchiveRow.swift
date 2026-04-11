@@ -22,5 +22,6 @@ struct ArchiveRow: View {
         .padding(.vertical, 12)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(AppColors.background)
+        .accessibilityHint("Double tap to view full reflection")
     }
 }

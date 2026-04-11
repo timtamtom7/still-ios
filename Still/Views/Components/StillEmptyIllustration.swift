@@ -4,13 +4,11 @@ import SwiftUI
 struct StillEmptyIllustration: View {
     let size: CGFloat
 
-    private let background = Color(hex: "0D0B09")
-    private let surface = Color(hex: "1A1714")
-    private let amber = Color(hex: "E8A46A")
-    private let amberGlow = Color(hex: "F4C594")
-    private let amberDeep = Color(hex: "C47D3E")
-    private let textSecondary = Color(hex: "9B9385")
-    private let separator = Color(hex: "2A2520")
+    // Use AppColors tokens to maintain design system consistency
+    private var illustrationAmber: Color { AppColors.amber }
+    private var illustrationAmberGlow: Color { AppColors.amberGlow }
+    private var illustrationSurface: Color { AppColors.surface }
+    private var illustrationTextSecondary: Color { AppColors.textSecondary }
 
     var body: some View {
         Canvas { context, canvasSize in
@@ -26,7 +24,7 @@ struct StillEmptyIllustration: View {
                     height: 200 * scale
                 )),
                 with: .radialGradient(
-                    Gradient(colors: [amber.opacity(0.1), Color.clear]),
+                    Gradient(colors: [illustrationAmber.opacity(0.1), Color.clear]),
                     center: center,
                     startRadius: 0,
                     endRadius: 100 * scale
@@ -35,9 +33,9 @@ struct StillEmptyIllustration: View {
 
             // Decorative circles
             let circles: [(CGPoint, CGFloat, Color)] = [
-                (CGPoint(x: center.x, y: center.y - 10 * scale), 60 * scale, amber.opacity(0.05)),
-                (CGPoint(x: center.x, y: center.y - 10 * scale), 40 * scale, amber.opacity(0.08)),
-                (CGPoint(x: center.x, y: center.y - 10 * scale), 20 * scale, amber.opacity(0.12)),
+                (CGPoint(x: center.x, y: center.y - 10 * scale), 60 * scale, illustrationAmber.opacity(0.05)),
+                (CGPoint(x: center.x, y: center.y - 10 * scale), 40 * scale, illustrationAmber.opacity(0.08)),
+                (CGPoint(x: center.x, y: center.y - 10 * scale), 20 * scale, illustrationAmber.opacity(0.12)),
             ]
             for (pos, radius, color) in circles {
                 var path = Path()
@@ -63,7 +61,7 @@ struct StillEmptyIllustration: View {
                     height: flameScale * 4
                 )),
                 with: .radialGradient(
-                    Gradient(colors: [amberGlow.opacity(0.2), amber.opacity(0.05), Color.clear]),
+                    Gradient(colors: [illustrationAmberGlow.opacity(0.2), illustrationAmber.opacity(0.05), Color.clear]),
                     center: flameCenter,
                     startRadius: 0,
                     endRadius: flameScale * 2
@@ -96,7 +94,7 @@ struct StillEmptyIllustration: View {
             flamePath.closeSubpath()
 
             context.fill(flamePath, with: .linearGradient(
-                Gradient(colors: [amber.opacity(0.8), amberGlow.opacity(0.5), amber.opacity(0.3)]),
+                Gradient(colors: [illustrationAmber.opacity(0.8), illustrationAmberGlow.opacity(0.5), illustrationAmber.opacity(0.3)]),
                 startPoint: CGPoint(x: flameCenter.x, y: flameCenter.y + flameScale * 0.5),
                 endPoint: CGPoint(x: flameCenter.x, y: flameCenter.y - flameScale)
             ))
@@ -114,7 +112,7 @@ struct StillEmptyIllustration: View {
                 width: candleWidth,
                 height: candleBottom - candleTop
             ))
-            context.fill(candlePath, with: .color(surface))
+            context.fill(candlePath, with: .color(illustrationSurface))
 
             // Candle top rim
             var rimPath = Path()
@@ -124,7 +122,7 @@ struct StillEmptyIllustration: View {
                 width: candleWidth,
                 height: 6 * scale
             ))
-            context.fill(rimPath, with: .color(amber.opacity(0.3)))
+            context.fill(rimPath, with: .color(illustrationAmber.opacity(0.3)))
 
             // Base
             var basePath = Path()
@@ -134,7 +132,7 @@ struct StillEmptyIllustration: View {
                 width: candleWidth * 1.4,
                 height: 12 * scale
             ))
-            context.fill(basePath, with: .color(surface))
+            context.fill(basePath, with: .color(illustrationSurface))
 
             // Small decorative elements
             let dots: [(CGPoint, CGFloat)] = [
@@ -151,7 +149,7 @@ struct StillEmptyIllustration: View {
                     width: r * 2,
                     height: r * 2
                 ))
-                context.fill(dotPath, with: .color(textSecondary.opacity(0.15)))
+                context.fill(dotPath, with: .color(illustrationTextSecondary.opacity(0.15)))
             }
         }
         .frame(width: size, height: size)
@@ -160,7 +158,7 @@ struct StillEmptyIllustration: View {
 
 #Preview {
     ZStack {
-        Color(hex: "0D0B09").ignoresSafeArea()
+        AppColors.background.ignoresSafeArea()
         StillEmptyIllustration(size: 220)
     }
 }

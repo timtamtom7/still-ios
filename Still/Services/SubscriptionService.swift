@@ -183,7 +183,9 @@ final class SubscriptionService {
         currentTier = .pro
         proPurchaseDate = Date()
         proExpiresAt = expiresAt ?? Calendar.current.date(byAdding: .year, value: 1, to: Date())
-        UserDefaults.standard.set(subscriptionId, forKey: "proSubscriptionId")
+        if let subscriptionId = subscriptionId {
+            UserDefaults.standard.set(subscriptionId, forKey: "proSubscriptionId")
+        }
     }
 
     func restorePurchases() async -> Bool {

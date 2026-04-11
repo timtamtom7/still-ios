@@ -1,8 +1,9 @@
 import AVFoundation
 import Foundation
 
+@MainActor
 final class SoundManager: ObservableObject {
-    static nonisolated(unsafe) let shared = SoundManager()
+    static let shared = SoundManager()
 
     @Published var isPlaying: Bool = false
     @Published var currentSound: AmbientSound = .silence
@@ -47,7 +48,6 @@ final class SoundManager: ObservableObject {
     func play() {
         guard currentSound != .silence else { return }
 
-        // Use procedural audio generation for each sound type
         generateAndPlay(sound: currentSound)
         isPlaying = true
     }
@@ -71,29 +71,28 @@ final class SoundManager: ObservableObject {
 
         fadeTimer?.invalidate()
         fadeTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
-            guard let self = self else { return }
+            Task { @MainActor in
+                guard let self = self else { return }
 
-            guard let player = self.audioPlayer else {
-                self.fadeTimer?.invalidate()
-                return
-            }
+                guard let player = self.audioPlayer else {
+                    self.fadeTimer?.invalidate()
+                    return
+                }
 
-            if player.volume > volumeStep {
-                player.volume -= volumeStep
-            } else {
-                self.fadeTimer?.invalidate()
-                player.stop()
-                self.isPlaying = false
-                self.isFading = false
-                self.audioPlayer = nil
+                if player.volume > volumeStep {
+                    player.volume -= volumeStep
+                } else {
+                    self.fadeTimer?.invalidate()
+                    player.stop()
+                    self.isPlaying = false
+                    self.isFading = false
+                    self.audioPlayer = nil
+                }
             }
         }
     }
 
     private func generateAndPlay(sound: AmbientSound) {
-        // For rain, fireplace, brown noise, ocean: generate procedural audio
-        // In production these would be bundled audio files
-        // Here we create placeholder player that gracefully handles missing files
         guard sound != .silence else { return }
 
         // Try to load from bundle first
@@ -117,10 +116,11 @@ final class SoundManager: ObservableObject {
     }
 
     private func generateSyntheticAudio(for sound: AmbientSound) {
-        // Placeholder - in production would use AVAudioEngine to generate
-        // brown noise, rain, ocean waves procedurally
-        // For now, the app gracefully degrades without audio files
-        print("[\(sound.rawValue)] Audio asset not found - add \(sound.rawValue.lowercased().replacingOccurrences(of: " ", with: "_")).mp3 to Assets")
+        // Procedural audio generation for ambient sounds.
+        // Note: Full implementation requires AVAudioEngine with noise generators.
+        // For production, bundle audio files named:
+        // rain.mp3, fireplace.mp3, brown_noise.mp3, ocean_waves.mp3
+        print("[\(sound.rawValue)] Audio asset not found — add \(sound.rawValue.lowercased().replacingOccurrences(of: " ", with: "_")).mp3 to Assets")
         isPlaying = false
     }
 
@@ -130,7 +130,6 @@ final class SoundManager: ObservableObject {
     }
 
     func pauseForReflection() {
-        // Called when user starts typing - fade out ambient
         fadeOut(duration: 2.0)
     }
 }

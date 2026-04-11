@@ -1,5 +1,6 @@
 import SwiftUI
 import UIKit
+import UserNotifications
 
 struct RitualView: View {
     @EnvironmentObject var viewModel: RitualViewModel
@@ -66,6 +67,21 @@ struct RitualView: View {
             if viewModel.state == .ready || viewModel.state == .waiting {
                 viewModel.startBreathing()
             }
+        }
+        .task {
+            await requestNotificationPermission()
+        }
+    }
+
+    private func requestNotificationPermission() async {
+        let center = UNUserNotificationCenter.current()
+        do {
+            let granted = try await center.requestAuthorization(options: [.alert, .sound, .badge])
+            if !granted {
+                print("Notification permission denied")
+            }
+        } catch {
+            print("Notification permission error: \(error)")
         }
     }
 

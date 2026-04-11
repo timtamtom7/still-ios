@@ -35,7 +35,7 @@ struct WeekReviewCard: View {
         }
         .padding(20)
         .background(AppColors.surface)
-        .cornerRadius(16)
+        .cornerRadius(AppRadius.card)
         .sheet(item: $selectedReflection) { reflection in
             ReflectionDetailSheet(reflection: reflection)
         }
@@ -64,7 +64,7 @@ struct WeekReviewReflectionRow: View {
         .padding(12)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(AppColors.background)
-        .cornerRadius(12)
+        .cornerRadius(AppRadius.small)
     }
 }
 
@@ -100,6 +100,7 @@ struct ReflectionDetailSheet: View {
                         dismiss()
                     }
                     .foregroundColor(AppColors.amber)
+                    .accessibilityLabel("Close reflection detail")
                 }
             }
         }

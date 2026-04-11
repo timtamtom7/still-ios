@@ -19,7 +19,7 @@ struct AmbientSoundPicker: View {
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
                 .background(AppColors.surface)
-                .cornerRadius(16)
+                .cornerRadius(AppRadius.pill)
             }
 
             if showPicker {
@@ -54,7 +54,7 @@ struct AmbientSoundPicker: View {
                         .background(AppColors.surface)
                     }
                 }
-                .cornerRadius(12)
+                .cornerRadius(AppRadius.small)
                 .padding(.top, 8)
                 .transition(.opacity.combined(with: .move(edge: .top)))
             }

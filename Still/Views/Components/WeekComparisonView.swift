@@ -102,6 +102,6 @@ struct WeekComparisonView: View {
         }
         .padding(20)
         .background(AppColors.surface)
-        .cornerRadius(16)
+        .cornerRadius(AppRadius.card)
     }
 }

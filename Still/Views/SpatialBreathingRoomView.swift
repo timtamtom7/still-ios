@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 /// R14: Vision Pro spatial breathing room
 /// Immersive breathing environments
@@ -7,6 +8,7 @@ struct SpatialBreathingRoomView: View {
     @State private var isSessionActive = false
     @State private var currentPhase: BreathPhase = .inhale
     @State private var cycleCount = 0
+    @State private var sessionTimer: Timer? = nil
 
     enum BreathingEnvironment: String, CaseIterable {
         case ocean = "Ocean"
@@ -109,6 +111,8 @@ struct SpatialBreathingRoomView: View {
                     .background(selectedEnvironment == env ? Color.white.opacity(0.2) : Color.clear)
                     .cornerRadius(12)
                 }
+                .accessibilityLabel("\(env.rawValue) environment")
+                .accessibilityAddTraits(selectedEnvironment == env ? .isSelected : [])
             }
         }
     }
@@ -169,6 +173,9 @@ struct SpatialBreathingRoomView: View {
                     .fontWeight(.light)
                     .foregroundColor(.white)
                     .opacity(0.8)
+                    .onChange(of: currentPhase) { _, newPhase in
+                        UIAccessibility.post(notification: .announcement, argument: newPhase.rawValue)
+                    }
             } else {
                 Text("Ready to breathe")
                     .font(.title)
@@ -220,26 +227,30 @@ struct SpatialBreathingRoomView: View {
         cycleCount = 1
         currentPhase = .inhale
 
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-            if !isSessionActive {
+        sessionTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] timer in
+            guard let self = self else {
+                timer.invalidate()
+                return
+            }
+            if !self.isSessionActive {
                 timer.invalidate()
                 return
             }
 
             // Phase transition
-            DispatchQueue.main.asyncAfter(deadline: .now() + currentPhase.duration) {
-                guard isSessionActive else { return }
+            DispatchQueue.main.asyncAfter(deadline: .now() + self.currentPhase.duration) {
+                guard self.isSessionActive else { return }
                 withAnimation {
-                    switch currentPhase {
+                    switch self.currentPhase {
                     case .inhale:
-                        currentPhase = .hold
+                        self.currentPhase = .hold
                     case .hold:
-                        currentPhase = .exhale
+                        self.currentPhase = .exhale
                     case .exhale:
-                        currentPhase = .rest
+                        self.currentPhase = .rest
                     case .rest:
-                        currentPhase = .inhale
-                        cycleCount += 1
+                        self.currentPhase = .inhale
+                        self.cycleCount += 1
                     }
                 }
             }
@@ -249,5 +260,7 @@ struct SpatialBreathingRoomView: View {
     private func stopSession() {
         isSessionActive = false
         currentPhase = .inhale
+        sessionTimer?.invalidate()
+        sessionTimer = nil
     }
 }
